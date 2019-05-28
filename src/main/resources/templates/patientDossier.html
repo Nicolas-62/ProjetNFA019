@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title th:text="${titre}">titre</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/patientDossier.css}" />
+</head>
+<header>
+	<a th:href="@{/pageLogin}">Accueil</a>
+	<a th:href="@{/patientRv}">Prendre un Rendez vous</a>
+	<a th:href="@{/patientDossier}">Mon Dossier</a>
+</header>
+<body>
+	<div class="rechercher">
+		<form>
+			<div>
+  				<input type="text" id="rechercher" name="rechercher" size="100">
+  				<input type="button" value="Rechercher">
+  			</div>
+  		</form>
+	</div>
+	<div class="liste">
+		<div class="liste1">
+			<h3>Liste des consultations effectuees</h3>
+				<ul>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+				</ul>
+		</div>
+	<div class="liste2">
+		<h3>Liste des consultations a venir</h3>
+			<ul>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+			</ul>
+	</div>
+</div>
+	<div class="recap">
+	<tableau>
+		<h4>Recapitulatif informations patients</h4>
+			<tr>Numero SS</tr></br>
+			<tr>Nom</tr></br>
+			<tr>Prenom</tr></br>
+			<tr>Sexe</tr></br>
+			<tr>Adresse</tr></br>
+			<tr>Ville</tr></br>
+			<tr>CP</tr>
+			<tr>Tel</tr>
+			<tr>Email</tr>
+	</tableau>
+	</div>
+
+</div>
+</body>

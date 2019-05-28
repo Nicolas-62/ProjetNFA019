@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title th:text="${titre}">titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/patientRv.css}" />
+</head>
+<header>
+	<a th:href="@{/pageLogin}">Accueil</a> <a th:href="@{/patientRv}">Prendre
+		un Rendez vous</a> <a th:href="@{/patientDossier}">Mon Dossier</a>
+</header>
+<body>
+	<div class="rechercher">
+		<form th:action="@{/adminMedecins/researchMedecin}" method="POST">
+			<div>
+				<input type="text" id="rechercher" name="rechercher" size="300">
+				<input type="submit" value="Rechercher">
+			</div>
+		</form>
+	</div>
+
+	<h3>Liste des medecins</h3>
+	<div class="liste1">
+		<ul>
+			<li th:each="medecin : ${medecins}"><a
+				th:href="@{'/adminMedecins/getMedecin/'+${medecin.id}}"
+				th:utext="${medecin.nom}+' '+${medecin.prenom}"></a></li>
+		</ul>
+	</div>
+	<div class="informations">
+		<div class="recap">
+			<ul th:if="${medecinInfo != null}">
+				<li th:utext="'Dr.'+${medecinInfo.nom}+' '+${medecinInfo.prenom}">Dr. Lulu Patrick</li>
+				<li th:utext="${medecinInfo.specialite}">Spécialité du  médecin</li>
+				<li th:utext="${medecinInfo.tel}">Tel du médecin</li>
+				<li th:utext="${medecinInfo.adresse}">Adresse du médecin</li>
+				<li th:utext="${medecinInfo.cp}+' '+${medecinInfo.ville}">Cp et ville</li>		
+			</ul>
+		</div>
+		<div class="consultation">
+			<form th:if="${patient != null}" action="/ma_page_de_connexion" method="post">
+				<h4>Demander une consultation</h4>
+					<div>	
+						<label for="numSecu">Numero SS:</label>
+						<input type="text" th:field="${patient.numSecu}" size="25" >
+						<span class="formError" th:if="${#fields.hasErrors('patient.numSecu')}"
+							th:errors="${patient.numSecu}">Saisie invalide.</span>
+					</div>				
+					<div>
+						<label for="nom">Nom :</label>
+						<input type="text" th:field="${patient.nom}" size="25">
+						<span class="formError" th:if="${#fields.hasErrors('patient.nom')}"
+							th:errors="${patient.nom}">Saisie invalide.</span>
+					</div>
+					<div>
+						<label for="prenom">Prenom :</label>
+						<input type="text" th:field="${patient.prenom}" size="25">
+						<span class="formError" th:if="${#fields.hasErrors('patient.prenom')}"
+							th:errors="${patient.prenom}">Saisie invalide.</span>
+					</div>
+					<div>
+						<label for="tel">Num tel :</label>
+						<input type="text" th:field="${patient.tel}" size="25">
+						<span class="formError" th:if="${#fields.hasErrors('patient.tel')}"
+							th:errors="${patient.tel}">Saisie invalide.</span>
+					</div>
+					<div>
+						<label for="date">Date :</label> <input type="date" id="date"
+							name="date">
+	
+					</div>
+					<div>
+						<label for="heure">Heure :</label> 
+						<select th:field="${medecinInfo.creneaux}" name="heure" size="1">
+							<option th:each="creneau : ${creneaux}" th:text="${creneau.hDebut}+':'${creaneau.mDebut}">HH:MM</option>
+						</select>					
+					</div>
+				<button>Ajouter</button>
+				<button>Modifier</button>
+				<button>Supprimer</button>
+			</form>
+		</div>
+	</div>
+</body>

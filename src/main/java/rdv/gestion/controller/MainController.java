@@ -26,7 +26,7 @@ import rdv.gestion.repository.PatientRepository;
 import rdv.gestion.repository.UserRepository;
 
 @Controller
-@SessionAttributes({"droits"})
+@SessionAttributes({ "droits" })
 public class MainController {
 
 	public static boolean containsIgnoreCase(String str, String subString) {
@@ -45,21 +45,42 @@ public class MainController {
 		model.addAttribute("msg", String.format("Nom du medecin : nico"));
 		return "index";
 	}
+
 	@RequestMapping(value = { "medecin" }, method = RequestMethod.GET)
 	public String medecin(Model model) {
 		return "medecin";
+	}
+
+	@RequestMapping(value = { "patientRv" }, method = RequestMethod.GET)
+	public String patientRv( Model model, HttpSession session) {	
+		if (!session.getAttribute("droits").equals(2)) {
+			return "redirect:/pageLogin";
+		} else {		
+			model.addAttribute("titre", String.format("Patient"));
+			model.addAttribute("medecins", medecinRepository.findAll());
+			return "patientRv";
+		}
+	}
+	@RequestMapping(value = { "patientRv/getMedecin/{medecin_id}" }, method = RequestMethod.GET)
+	public String patientRvGetMedecin(@PathVariable("patient_id") Integer medecin_id, Model model, HttpSession session) {	
+		if (!session.getAttribute("droits").equals(2)) {
+			return "redirect:/pageLogin";
+		} else {			
+			model.addAttribute("titre", String.format("Patient"));
+			model.addAttribute("medecins", medecinRepository.findAll());
+			return "patientRv";
+		}
 	}	
-	@RequestMapping(value = { "patient" }, method = RequestMethod.GET)
-	public String patient(Model model) {
-		return "patient";
-	}	
-	
 
 	@RequestMapping(value = { "/adminMedecins" }, method = RequestMethod.GET)
 	public String adminMedecins(@ModelAttribute("medecin") Medecin medecin, HttpSession session, Model model) {
-		model.addAttribute("titre", String.format("Administration"));
-		model.addAttribute("medecins", medecinRepository.findAll());
-		return "adminMedecins";
+		if (!session.getAttribute("droits").equals(1)) {
+			return "redirect:/pageLogin";
+		} else {
+			model.addAttribute("titre", String.format("Administration"));
+			model.addAttribute("medecins", medecinRepository.findAll());
+			return "adminMedecins";
+		}
 	}
 
 	@RequestMapping(value = { "/adminPatients" }, method = RequestMethod.GET)
@@ -70,6 +91,22 @@ public class MainController {
 			model.addAttribute("titre", String.format("Administration"));
 			model.addAttribute("patients", patientRepository.findAll());
 			return "adminPatients";
+		}
+	}
+
+	@RequestMapping(value = { "/adminMedecins/getMedecin/{medecin_id}" }, method = RequestMethod.GET)
+	public String adminMedecinsGetMedecin(@PathVariable("patient_id") Integer medecin_id, Model model,
+			HttpSession session) {
+		if (!session.getAttribute("droits").equals(1)) {
+			return "redirect:/pageLogin";
+		} else {
+			model.addAttribute("titre", String.format("Administration"));
+			model.addAttribute("medecins", medecinRepository.findAll());
+			// passage de l'objet patient trouvé dans la vue avec le nom de l'objet géré par
+			// le formulaire
+			model.addAttribute("medecin", medecinRepository.findById(medecin_id).get());
+
+			return "adminMedecins";
 		}
 	}
 
@@ -86,6 +123,31 @@ public class MainController {
 			model.addAttribute("patient", patientRepository.findById(patient_id).get());
 
 			return "adminPatients";
+		}
+	}
+
+	@RequestMapping(value = { "/adminMedecins/researchMedecin" }, method = RequestMethod.POST)
+	public String adminMedecinsResearchMedecin(@ModelAttribute("medecin") Medecin medecin,
+			@RequestBody String requestBody, @RequestParam(required = false, value = "rechercher") String slug,
+			Model model, HttpSession session) {
+		if (!session.getAttribute("droits").equals(1)) {
+			return "redirect:/pageLogin";
+		} else {
+			Iterable<Medecin> medecinsAll = medecinRepository.findAll();
+			Iterator<Medecin> medecins = medecinsAll.iterator();
+			while (medecins.hasNext()) {
+				Medecin p = medecins.next();
+				if (containsIgnoreCase(p.getNom(), slug) || containsIgnoreCase(p.getPrenom(), slug)
+						|| containsIgnoreCase(p.getSpecialite(), slug) || containsIgnoreCase(p.getTel(), slug)
+						|| containsIgnoreCase(p.getMail(), slug) || containsIgnoreCase(p.getAdresse(), slug)
+						|| containsIgnoreCase(p.getVille(), slug) || containsIgnoreCase(p.getCp(), slug)) {
+				} else {
+					medecins.remove();
+				}
+			}
+			model.addAttribute("titre", String.format("Administration"));
+			model.addAttribute("medecins", medecinsAll);
+			return "adminMedecins";
 		}
 	}
 
@@ -111,6 +173,55 @@ public class MainController {
 			model.addAttribute("titre", String.format("Administration"));
 			model.addAttribute("patients", patientsAll);
 			return "adminPatients";
+		}
+	}
+
+	@RequestMapping(value = { "/adminMedecins/setMedecin" }, method = RequestMethod.POST)
+	public String adminMedecinsSetMedecin(@RequestParam(required = false, value = "add") String addFlag,
+			@RequestParam(required = false, value = "update") String updateFlag,
+			@RequestParam(required = false, value = "delete") String deleteFlag, @Valid Medecin medecin,
+			BindingResult results, RedirectAttributes redirectAttributes, Model model, HttpSession session) {
+		if (!session.getAttribute("droits").equals(1)) {
+			return "redirect:/pageLogin";
+		} else {
+			model.addAttribute("titre", String.format("Administration"));
+			model.addAttribute("medecins", medecinRepository.findAll());
+			System.out.println("user id : " + medecin.getUser().getId());
+			if (results.hasErrors()) {
+				return "adminMedecins";
+			} else {
+				// AJOUTER
+				if (addFlag != null) {
+					// si l'identifiant et le mot de passe ne sont pas remplis
+					if (medecin.getUser().getIdentifiant().length() < 5
+							&& medecin.getUser().getPassword().length() < 5) {
+						redirectAttributes.addFlashAttribute("erreur",
+								String.format("Il faut renseigner un identifiant et un mot de passe"));
+					} else {
+						// si l'identifiant est unique
+						if (userRepository.findByIdentifiant(medecin.getUser().getIdentifiant()) == null) {
+							// on sauvegarde
+							System.out.println(medecin.getUser());
+							medecin.getUser().setDroits(3);
+							userRepository.save(medecin.getUser());
+							medecinRepository.save(medecin);
+						} else {
+							redirectAttributes.addFlashAttribute("erreur",
+									String.format("Ce numéro de Sécu existe déjà"));
+						}
+					}
+					// MODIFIER
+				} else if (updateFlag != null) {
+					medecin.getUser().setDroits(3);
+					userRepository.save(medecin.getUser());
+					medecinRepository.save(medecin);
+					// SUPPRIMER
+				} else if (deleteFlag != null) {
+					medecinRepository.delete(medecin);
+					userRepository.delete(medecin.getUser());
+				}
+				return "redirect:/adminMedecins";
+			}
 		}
 	}
 
@@ -154,12 +265,12 @@ public class MainController {
 									String.format("Cet identifiant existe déjà"));
 						}
 					}
-				// MODIFIER
+					// MODIFIER
 				} else if (updateFlag != null) {
 					patient.getUser().setDroits(3);
 					userRepository.save(patient.getUser());
 					patientRepository.save(patient);
-				// SUPPRIMER
+					// SUPPRIMER
 				} else if (deleteFlag != null) {
 					patientRepository.delete(patient);
 					userRepository.delete(patient.getUser());
@@ -212,7 +323,7 @@ public class MainController {
 						// droits=3 : droits d'accès patient
 					} else {
 						session.setAttribute("droits", 3);
-						return "redirect:/patient";
+						return "redirect:/patientRv";
 					}
 				}
 			}
