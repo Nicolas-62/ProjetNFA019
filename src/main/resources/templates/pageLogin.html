@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title th:text="${titre}">titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/pageLogin.css}" />
+</head>
+<body>
+<form th:action="@{/pageLogin}" th:object="${user}" method="post">
+    <div class="champIdentifiant">
+        <label for="identifiant">Identifitant :</label>
+        <input type="text" th:field="*{identifiant}">
+        <span class="formError" th:if="${#fields.hasErrors('identifiant')}" th:errors="*{identifiant}">identifiant invalide</span>        
+    </div>
+    <div class="champPassword">
+        <label for="password">Mdp :</label>
+        <input type="password" th:field="*{password}">
+        <span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password invalide</span>
+    </div>
+	<div class="radio">
+		  <label for="droits1">Admin</label>
+		  <input type="radio" th:field="*{droits}" value=1 />
+		  <label for="droits2">Medecin</label>
+		  <input type="radio" th:field="*{droits}" value=2 />
+		  <label for="droits3">Patient</label>
+		  <input type="radio" th:field="*{droits}" value=3 checked>
+	</div>
+	<div>
+	    <button>Connexion</button>
+	</div>
+	<span data-th-text="${erreur}"></span>
+</form>
+</body>

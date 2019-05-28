@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+    	<meta charset="UTF-8"/> 
+    	<title>Patient</title>
+    	<meta name="author" content="N Sergent N Lourdel"/>   
+    	<link rel="stylesheet" href="GestionPatient.css" media="screen"/>
+	</head>
+<header>
+	<h2>Gestion consultations</h2>
+</header>
+<body>
+<div class="rechercher">
+			<div>
+  				<input type="text" id="rechercher" name="rechercher" size="100">
+  				<input type="button" value="Rechercher">
+  			</div>
+</div>
+
+		<div class="liste1">
+			<h3>Liste des medecins</h3>
+				<ul>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+					<li>JEan Marc morandini</li>
+				</ul>
+</div>
+<div class="informations">
+	<div class="recap">
+		<tableau>
+		<h4>Recapitulatif informations medecin</h4>
+			<tr>Nom</tr></br>
+			<tr>Prenom</tr></br>
+			<tr>Sexe</tr></br>
+			<tr>Adresse</tr></br>
+			<tr>Ville</tr></br>
+			<tr>CP</tr></br>
+			<tr>Tel</tr></br>
+			<tr>Email</tr>
+		</tableau>
+	</div>
+	<div class="consultation">
+	<form action="/ma_page_de_connexxion" method="post">
+		<h4>Demander une consultation</h4>
+    <div>
+        <label for="numeross">Numero SS :</label>
+        <input type="text" id="numeross" name="numeross">
+        <span class="formError">Message derreur</span>
+    </div>
+    <div>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom">
+        <span class="formError">Message derreur</span>
+    </div>
+     <div>
+        <label for="prenom">Prenom :</label>
+        <input type="text" id="prenom" name="prenom">
+        <span class="formError">Message derreur</span>
+    </div>
+     <div>
+        <label for="numtel">Nr. tel:</label>
+        <input type="text" id="numtel" name="numtel">
+        <span class="formError">Message derreur</span>
+    </div>
+     <div>
+        <label for="date">Date :</label>
+        <input type="date" id="date" name="date">
+      
+    </div>
+     <div>
+        <label for="heure">Heure :</label>
+      	<SELECT name="heure" size="1">
+			<OPTION>15h
+			<OPTION>16h
+			<OPTION>17h
+			<OPTION>18h
+			<OPTION>19h
+		</SELECT>
+        
+    </div>
+   		<button>Ajouter</button>
+   		<button>Modifier</button>
+		<button>Supprimer</button>
+</div>
+</body>
