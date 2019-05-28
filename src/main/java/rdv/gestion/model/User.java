@@ -21,7 +21,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotNull
-	@Size(min = 5, max = 30, message = "Taille minimum de {min} et {max} au maximum.")	
+	@Size(min = 5, max = 30, message = "Taille entre {min} et {max}")	
 	private String identifiant;	
 	/*SHA-3 is the latest secure hashing standard after SHA-2. Compared to SHA-2, SHA-3 provides 
 	 * a different approach to generate a unique one-way hash, and it can be much faster on some 
@@ -29,7 +29,7 @@ public class User {
 	 * in SHA-3.	
 	 */
 	@NotNull
-	@Size(min = 5, max = 30, message = "Taille minimum de {min} et {max} au maximum.")	
+	@Size(min = 5, max = 30, message = "Taille entre {min} et {max}")	
 	private String password;
 
 	@NotNull
