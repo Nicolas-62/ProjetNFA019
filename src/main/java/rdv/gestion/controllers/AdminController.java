@@ -1,4 +1,4 @@
-package rdv.gestion.controller;
+package rdv.gestion.controllers;
 
 import java.util.Iterator;
 
@@ -26,13 +26,12 @@ import rdv.gestion.repository.PatientRepository;
 import rdv.gestion.repository.UserRepository;
 
 @Controller
-@SessionAttributes({ "droits" })
-public class MainController {
+@SessionAttributes({ "droits" , "id"})
+public class AdminController {
 
 	public static boolean containsIgnoreCase(String str, String subString) {
 		return str.toLowerCase().contains(subString.toLowerCase());
 	}
-
 	@Autowired // sert à creer une instance voir pattern singleton
 	MedecinRepository medecinRepository;
 	@Autowired
@@ -40,37 +39,6 @@ public class MainController {
 	@Autowired
 	PatientRepository patientRepository;
 
-	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
-	public String index(Model model) {
-		model.addAttribute("msg", String.format("Nom du medecin : nico"));
-		return "index";
-	}
-
-	@RequestMapping(value = { "medecin" }, method = RequestMethod.GET)
-	public String medecin(Model model) {
-		return "medecin";
-	}
-
-	@RequestMapping(value = { "patientRv" }, method = RequestMethod.GET)
-	public String patientRv( Model model, HttpSession session) {	
-		if (!session.getAttribute("droits").equals(2)) {
-			return "redirect:/pageLogin";
-		} else {		
-			model.addAttribute("titre", String.format("Patient"));
-			model.addAttribute("medecins", medecinRepository.findAll());
-			return "patientRv";
-		}
-	}
-	@RequestMapping(value = { "patientRv/getMedecin/{medecin_id}" }, method = RequestMethod.GET)
-	public String patientRvGetMedecin(@PathVariable("patient_id") Integer medecin_id, Model model, HttpSession session) {	
-		if (!session.getAttribute("droits").equals(2)) {
-			return "redirect:/pageLogin";
-		} else {			
-			model.addAttribute("titre", String.format("Patient"));
-			model.addAttribute("medecins", medecinRepository.findAll());
-			return "patientRv";
-		}
-	}	
 
 	@RequestMapping(value = { "/adminMedecins" }, method = RequestMethod.GET)
 	public String adminMedecins(@ModelAttribute("medecin") Medecin medecin, HttpSession session, Model model) {
@@ -278,55 +246,7 @@ public class MainController {
 				return "redirect:/adminPatients";
 			}
 		}
-	}
-
-	@RequestMapping(value = { "/pageLogin" }, method = RequestMethod.GET)
-	public String pagelogin(@ModelAttribute("user") User user, Model model) {
-		model.addAttribute("titre", String.format("login"));
-		return "pageLogin";
-	}
-
-	@RequestMapping(value = { "/pageLogin" }, method = RequestMethod.POST)
-	public String pagelogin(@Valid User user, BindingResult results, Model model, HttpSession session) {
-		model.addAttribute("titre", String.format("login"));
-		if (results.hasErrors()) {
-			return "pageLogin";
-		} else {
-			// si aucun utilisateur avec cet identifiant n'a été trouvé :
-			if (userRepository.findByIdentifiant(user.getIdentifiant()) == null) {
-				model.addAttribute("titre", String.format("login"));
-				model.addAttribute("erreur", String.format("Identifiant incorect"));
-				return "pageLogin";
-			} else {
-				/*
-				 * sinon on recherche les droits de l'utilisateur en fonction de l'identifiant
-				 * et du password donné
-				 */
-				Integer droits = userRepository.getDroitsFromUser(user.getIdentifiant(), user.getPassword());
-				// si aucun utilisateur a été trouvé et donc pas de droits trouvés
-				if (droits == null) {
-					model.addAttribute("erreur", String.format("mot de passe incorect"));
-					return "pageLogin";
-					// si les droits ne correspondent pas avec ceux selectionnés :
-				} else if (droits != user.getDroits()) {
-					model.addAttribute("erreur", String.format("Vous ne pouvez vous connecter avec ces droits"));
-					return "pageLogin";
-					// sinon on redirige vers la page autorisée
-				} else {
-					System.out.println("droits : " + droits);
-					if (droits == 1) {
-						session.setAttribute("droits", 1);
-						return "redirect:/adminPatients";
-					} else if (droits == 2) {
-						session.setAttribute("droits", 2);
-						return "redirect:/medecin";
-						// droits=3 : droits d'accès patient
-					} else {
-						session.setAttribute("droits", 3);
-						return "redirect:/patientRv";
-					}
-				}
-			}
-		}
-	}
+	}	
 }
+
+	

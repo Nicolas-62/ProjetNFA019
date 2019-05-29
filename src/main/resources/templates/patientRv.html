@@ -24,7 +24,7 @@
 	<div class="liste1">
 		<ul>
 			<li th:each="medecin : ${medecins}"><a
-				th:href="@{'/adminMedecins/getMedecin/'+${medecin.id}}"
+				th:href="@{'/patientRv/getMedecin/'+${medecin.id}}"
 				th:utext="${medecin.nom}+' '+${medecin.prenom}"></a></li>
 		</ul>
 	</div>
