@@ -40,12 +40,6 @@ public class MedecinController {
 	@Autowired
 	PatientRepository patientRepository;
 
-	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
-	public String index(Model model) {
-		model.addAttribute("msg", String.format("Nom du medecin : nico"));
-		return "index";
-	}
-
 	@RequestMapping(value = { "medecin" }, method = RequestMethod.GET)
 	public String medecin(Model model) {
 		return "medecin";

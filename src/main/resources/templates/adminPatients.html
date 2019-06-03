@@ -7,28 +7,32 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/adminPatients.css}" />
 </head>
 <header>
-	<a th:href="@{/adminPatients}">Patients</a>
-	<a th:href="@{/adminMedecins}">Medecins</a>
-	<a th:href="@{/pageLogin}">Accueil</a>
+	<ul>
+	<li><a th:href="@{/pageLogin}">Accueil</a><li>
+	<li><a th:href="@{/adminPatients}">Patients</a></li>
+	<li><a th:href="@{/adminMedecins}">Medecins</a></li>
+	</ul>
 </header>
 <body>	
-	<div class="liste">
+	<section>
 		<h3>Liste des patients</h3>
-		<ul th:each="patient : ${patients}">
-			<li><a th:href="@{'/adminPatients/getPatient/'+${patient.id}}" th:utext="${patient.nom}+' '+${patient.prenom}"></a></li>
+	<div class="liste">
+		<ul>
+			<li th:each="patient : ${patients}" ><a th:href="@{'/adminPatients/getPatient/'+${patient.id}}" th:utext="${patient.nom}+' '+${patient.prenom}"></a></li>
 		</ul>
 	</div>
+	</section>
 	<footer>
 		<h3>Fiche Informations Patient</h3>
 		<span class="formError" data-th-text="${erreur}"></span>
 		<form th:action="@{/adminPatients/setPatient}" method="POST">
-			<div class="formPatient">
+			<div class="formulaire">
 				<div class="formGauche">
 				<input type="hidden" th:field="${patient.id}">
 				<input type="hidden" th:field="${patient.user.id}">
 					<div>
 						<label for="numSecu">Numero SS:</label>
-						<input type="text" th:field="${patient.numSecu}" size="25" >
+						<input type="text" th:field="${patient.numSecu}" size="50" >
 						<span class="formError" th:if="${#fields.hasErrors('patient.numSecu')}"
 							th:errors="${patient.numSecu}">Saisie invalide.</span>
 					</div>				
@@ -89,15 +93,17 @@
 			        <input type="text" th:field="${patient.user.identifiant}">
 			        <span class="formError" th:if="${#fields.hasErrors('patient.user.identifiant')}" th:errors="${patient.user.identifiant}">identifiant invalide</span>        
 			    </div>
-			    <div>
+			    <div class="mdp">
 			        <label for="password">Mdp :</label>
 			        <input type="text" th:field="${patient.user.password}">
 			        <span class="formError" th:if="${#fields.hasErrors('patient.user.password')}" th:errors="${patient.user.password}">password invalide</span>
 			    </div>		  			
-			</div>			
+			</div>
+			<div class="bouton">		
 			<button type="submit" name="add" value="add">Ajouter</button>
 			<button type="submit" name="update" value="update">Modifier</button>
 			<button type="submit" name="delete" value="delete">Supprimer</button>
+			</div>
 		</form>
 		<div class="rechercher">
 			<form th:action="@{/adminPatients/researchPatient}" method="POST">

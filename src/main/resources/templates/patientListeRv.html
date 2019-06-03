@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title th:text="${titre}">titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/patientListeRv.css}" />
+</head>
+<header>
+	<a th:href="@{/pageLogin}">Accueil</a> 
+	<a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a> 
+	<a th:href="@{/patientListeRv}">Mes Rendez vous</a> 
+	<a th:href="@{/patientDossier}">Mon Dossier</a>
+</header>
+<body>
+	<p th:text="${message}">message</p>
+	<h3>Liste des rendez vous</h3>
+	<div class="liste1">
+		<ul>
+			<li th:each="rv : ${rendezVous}"><a
+				th:href="@{'/patientListeRv/getRv/'+${rv.id}}"
+				th:utext="'Dr. '+${rv.creneaux.medecin.nom}+' '+${rv.creneaux.medecin.prenom}+', '+${rv.date}+', '+${rv.creneaux.hDebut}+'h'+${rv.creneaux.mDebut}"></a></li>
+		</ul>
+	</div>
+	<div class="informations">
+		<div class="recap">
+			<ul th:if="${medecinInfo != null}">
+				<li th:utext="'Dr.'+${medecinInfo.nom}+' '+${medecinInfo.prenom}">Dr. Lulu Patrick</li>
+				<li th:utext="${medecinInfo.specialite}">Spécialité du  médecin</li>
+				<li th:utext="${medecinInfo.tel}">Tel du médecin</li>
+				<li th:utext="${medecinInfo.adresse}">Adresse du médecin</li>
+				<li th:utext="${medecinInfo.cp}+' '+${medecinInfo.ville}">Cp et ville</li>		
+			</ul>
+		</div>
+		<div class="consultation">
+			<form th:if="${medecinInfo != null}" th:action="@{'/patientListeRv/setRv/'+${rv.id}}" method="post">
+				<h4>Ma consultation</h4>
+					<div>
+						<label for="date">Date :</label> 
+						<input type="date" id="date" name="date"
+							 th:value="${#dates.format(rv.date, 'yyyy-MM-dd')}">
+					</div>
+					<div>
+						<label for="creneaux">Heure :</label> 
+						<select id="creneaux" name="creneaux" size="1">
+							<option th:each="creneau : ${medecinInfo.creneaux}" 
+									th:text="${creneau.hDebut}+':'+${creneau.mDebut}" 
+									th:value="${creneau.id}"
+									th:selected="${creneau.id==rv.creneaux.id}">HH:MM</option>
+						</select>					
+					</div>
+				<button type="submit" name="update" value="update">Modifier</button>
+				<button type="submit" name="delete" value="delete">Supprimer</button>
+			</form>
+		</div>
+	</div>
+</body>

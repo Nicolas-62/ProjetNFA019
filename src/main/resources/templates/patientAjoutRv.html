@@ -4,27 +4,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title th:text="${titre}">titre</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/patientRv.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/patientAjoutRv.css}" />
 </head>
 <header>
-	<a th:href="@{/pageLogin}">Accueil</a> <a th:href="@{/patientRv}">Prendre
-		un Rendez vous</a> <a th:href="@{/patientDossier}">Mon Dossier</a>
+	<a th:href="@{/pageLogin}">Accueil</a> 
+	<a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a> 
+	<a th:href="@{/patientListeRv}">Mes Rendez vous</a> 
+	<a th:href="@{/patientDossier}">Mon Dossier</a>
 </header>
 <body>
 	<div class="rechercher">
-		<form th:action="@{/adminMedecins/researchMedecin}" method="POST">
+		<form th:action="@{/patientAjoutRv/addRv}" method="POST">
 			<div>
 				<input type="text" id="rechercher" name="rechercher" size="300">
 				<input type="submit" value="Rechercher">
 			</div>
 		</form>
 	</div>
-
+	<p th:text="${message}">message</p>
 	<h3>Liste des medecins</h3>
 	<div class="liste1">
 		<ul>
 			<li th:each="medecin : ${medecins}"><a
-				th:href="@{'/patientRv/getMedecin/'+${medecin.id}}"
+				th:href="@{'/patientAjoutRv/getMedecin/'+${medecin.id}}"
 				th:utext="${medecin.nom}+' '+${medecin.prenom}"></a></li>
 		</ul>
 	</div>
@@ -39,7 +41,7 @@
 			</ul>
 		</div>
 		<div class="consultation">
-			<form th:if="${patient != null}" action="/ma_page_de_connexion" method="post">
+			<form th:if="${medecinInfo != null}" th:action="@{/patientAjoutRv/addRv}" method="post">
 				<h4>Demander une consultation</h4>
 					<div>	
 						<label for="numSecu">Numero SS:</label>
@@ -71,14 +73,12 @@
 	
 					</div>
 					<div>
-						<label for="heure">Heure :</label> 
-						<select th:field="${medecinInfo.creneaux}" name="heure" size="1">
-							<option th:each="creneau : ${creneaux}" th:text="${creneau.hDebut}+':'${creaneau.mDebut}">HH:MM</option>
+						<label for="creneaux">Heure :</label> 
+						<select th:field="${medecinInfo.creneaux}" size="1">
+							<option th:each="creneau : ${medecinInfo.creneaux}" th:text="${creneau.hDebut}+':'+${creneau.mDebut}" th:value="${creneau.id}">HH:MM</option>
 						</select>					
 					</div>
-				<button>Ajouter</button>
-				<button>Modifier</button>
-				<button>Supprimer</button>
+				<button type="submit">Prendre un Rendez vous</button>
 			</form>
 		</div>
 	</div>

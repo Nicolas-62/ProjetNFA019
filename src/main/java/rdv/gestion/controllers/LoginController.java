@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import rdv.gestion.model.User;
+import rdv.gestion.repository.PatientRepository;
 import rdv.gestion.repository.UserRepository;
 
 @Controller
-@SessionAttributes({ "droits" , "id"})
+@SessionAttributes({ "droits" , "id", "patient_id"})
 public class LoginController {
 
 	public static boolean containsIgnoreCase(String str, String subString) {
@@ -24,6 +25,8 @@ public class LoginController {
 	}
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	PatientRepository patientRepository;
 
 
 	// page d'accueil...
@@ -49,27 +52,29 @@ public class LoginController {
 				 * sinon on recherche les droits de l'utilisateur en fonction de l'identifiant
 				 * et du password donné
 				 */
-				Integer droits = userRepository.getDroitsFromUser(user.getIdentifiant(), user.getPassword());
+				User userFound = userRepository.findUser(user.getIdentifiant(), user.getPassword());
 				// si aucun utilisateur a été trouvé et donc pas de droits trouvés
-				if (droits == null) {
+				if (userFound == null) {
 					model.addAttribute("erreur", String.format("mot de passe incorect"));
 					return "pageLogin";
 					// si les droits ne correspondent pas avec ceux selectionnés :
-				} else if (droits != user.getDroits()) {
+				} else if (userFound.getDroits() != user.getDroits()) {
 					model.addAttribute("erreur", String.format("Vous ne pouvez vous connecter avec ces droits"));
 					return "pageLogin";
 					// sinon on redirige vers la page autorisée
 				} else {
-					session.setAttribute("droits", droits);
-					session.setAttribute("id", user.getId());
+					session.setAttribute("droits", userFound.getDroits());
+					session.setAttribute("id", userFound.getId());
 					
-					if (droits == 1) {
+					if (userFound.getDroits() == 1) {
 						return "redirect:/adminPatients";
-					} else if (droits == 2) {						
+					} else if (userFound.getDroits() == 2) {						
 						return "redirect:/medecin";
 						// droits=3 : droits d'accès patient
 					} else {
-						return "redirect:/patientRv";
+						// on récupère l'id du patient à partir de l'id user stocké en session et on le stocke en session
+						session.setAttribute("patient_id", patientRepository.findByUser_id(Integer.parseInt(session.getAttribute("id").toString())).getId());						
+						return "redirect:/patientAjoutRv";
 					}
 				}
 			}

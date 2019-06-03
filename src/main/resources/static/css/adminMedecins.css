@@ -1,39 +1,15 @@
-
- header ul {
- padding:0;
- margin:0;
- list-style-type:none;
- }
-header li {
- margin-left:2px;
- float:left; /*pour IE*/
- }
-header ul li a {
- display:block;
- float:left;   
- width:100px;
- background-color:#6495ED;
- color:black;
- text-decoration:none;
- text-align:center;
- padding:5px;
- border:2px solid;
- /*pour avoir un effet "outset" avec IE :*/
- border-color:#DCDCDC #696969 #696969 #DCDCDC;
- }
-ul li a:hover {
- background-color:#D3D3D3;
- border-color:#696969 #DCDCDC #DCDCDC #696969;
- }
 header{
+    background-color: #00BFFF;
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
     height: 70px;
     z-index: 1030;
     box-sizing: border-box;
-    display: flex;
-    justify-content: center;
 }	
 footer{
-
+	background-color: #00BFFF;
     position: fixed;
     right: 0;
     bottom: 0;
@@ -44,19 +20,18 @@ footer{
    }
 body{
 	margin: auto;
-}
-section{
-	margin-top: 10px;
+    background-color: #00BFFF;
 }
 .liste{
     height: 30vh;
     overflow-y: scroll;
     position: relative;
+    margin-top: 100px;
     margin-right: 300px;
     background-color: white; 
 }
 
-.formulaire{
+.formPatient{
 
     display: flex;
     margin: 10px;
@@ -75,7 +50,7 @@ section{
 
 }
 label{
-  display: inline-block;
+    display: inline-block;
   width: 90px;
   text-align: left;
 }
@@ -85,21 +60,8 @@ input{
 }
 #rechercher{
     width: 50%;
-    
-}
-.rechercher{
-	text-align: center;
-	margin: 10px;
 }
 .formError {
   color : red;
   display : block;
-}
-.bouton{
-	text-align: center;
-	margin: 10px;
-	font-family: cursive;
-}
-.mdp{
-	margin-left: 10px;
 }

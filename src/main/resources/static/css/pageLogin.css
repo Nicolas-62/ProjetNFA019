@@ -3,12 +3,12 @@ body{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-image: linear-gradient(#40dfff, #0000);
 }
 form {
   /* Uniquement centrer le formulaire sur la page */
-  min-height: 300px;
 
-  width: 500px;
+  width: 400px;
   /* Encadré pour voir les limites du formulaire */
   padding: 3em;
   border: 3px solid #CCC;
@@ -17,17 +17,16 @@ form {
   box-sizing: border-box;
 }
 .champPassword{
-	min-height: 60px;
+	min-height: 40px;
 }
 .champIdentifiant{
-	min-height: 60px;
+	min-height: 40px;
 }
 .radio{
 	margin-bottom: 15px;
 }
 .radio label{
 	width: auto;
-	margin-left: 20px;
 }
 label {
   /* Pour être sûrs que toutes les étiquettes ont même taille et sont correctement alignées */
@@ -37,4 +36,11 @@ label {
 
 button{
   margin: auto;
+  font-family:cursive;
+  display: block;
+}
+.formError{
+	display: block;
+	color:red;
+	font-style:italic;
 }

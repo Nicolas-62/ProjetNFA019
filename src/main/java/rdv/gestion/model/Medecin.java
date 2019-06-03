@@ -27,7 +27,7 @@ public class Medecin {
 	@Pattern(regexp = "^[a-zA-Zàâéèëêïîôùüçœ\\'’ -]{2,25}$", message = "format du nom invalide")
 	private String prenom;
 	@NotNull
-	private String specialite; // checkbox
+	private String specialite;
 	@NotNull
 	@Pattern(regexp = "^0[1-9]([-\\. ]?[0-9]{2}){4}$", message = "Format saisie invalide")
 	private String tel;
