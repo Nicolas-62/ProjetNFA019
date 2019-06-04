@@ -7,16 +7,18 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/patientAjoutRv.css}" />
 </head>
 <header>
-	<a th:href="@{/pageLogin}">Accueil</a> 
-	<a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a> 
-	<a th:href="@{/patientListeRv}">Mes Rendez vous</a> 
-	<a th:href="@{/patientDossier}">Mon Dossier</a>
+	<ul>
+	<li><a th:href="@{/pageLogin}">Accueil</a></li> 
+	<li><a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a></li> 
+	<li><a th:href="@{/patientListeRv}">Mes Rendez vous</a></li>
+	<li><a th:href="@{/patientDossier}">Mon Dossier</a></li>
+	</ul>
 </header>
 <body>
 	<div class="rechercher">
 		<form th:action="@{/patientAjoutRv/addRv}" method="POST">
 			<div>
-				<input type="text" id="rechercher" name="rechercher" size="300">
+				<input type="text" id="rechercher" name="rechercher" size="120">
 				<input type="submit" value="Rechercher">
 			</div>
 		</form>
@@ -30,9 +32,9 @@
 				th:utext="${medecin.nom}+' '+${medecin.prenom}"></a></li>
 		</ul>
 	</div>
-	<div class="informations">
-		<div class="recap">
-			<ul th:if="${medecinInfo != null}">
+	<div class="informations" th:if="${medecinInfo != null}" >
+		<div class="recap" >
+			<ul >
 				<li th:utext="'Dr.'+${medecinInfo.nom}+' '+${medecinInfo.prenom}">Dr. Lulu Patrick</li>
 				<li th:utext="${medecinInfo.specialite}">Spécialité du  médecin</li>
 				<li th:utext="${medecinInfo.tel}">Tel du médecin</li>
@@ -41,7 +43,7 @@
 			</ul>
 		</div>
 		<div class="consultation">
-			<form th:if="${medecinInfo != null}" th:action="@{/patientAjoutRv/addRv}" method="post">
+			<form th:action="@{/patientAjoutRv/addRv}" method="post">
 				<h4>Demander une consultation</h4>
 					<div>	
 						<label for="numSecu">Numero SS:</label>
