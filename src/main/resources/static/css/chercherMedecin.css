@@ -1,0 +1,15 @@
+.liste1{
+    margin: auto;
+    margin-top: 25px;
+  padding: auto;
+    height: 30vh;
+    overflow-y: scroll;
+    position: relative;
+    background-color: white; 
+    width: 60%;
+}
+.rechercher{
+  margin-top: 5%;
+  display: flex;
+    justify-content: center;
+}

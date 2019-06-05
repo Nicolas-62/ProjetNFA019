@@ -7,10 +7,12 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/patientListeRv.css}" />
 </head>
 <header>
-	<a th:href="@{/pageLogin}">Accueil</a> 
-	<a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a> 
-	<a th:href="@{/patientListeRv}">Mes Rendez vous</a> 
-	<a th:href="@{/patientDossier}">Mon Dossier</a>
+	<ul>
+	<li><a th:href="@{/pageLogin}">Accueil</a></li>
+	<li><a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a></li>
+	<li><a th:href="@{/patientListeRv}">Mes Rendez vous</a></li>
+	<li><a th:href="@{/patientDossier}">Mon Dossier</a></li>
+	</ul>
 </header>
 <body>
 	<p th:text="${message}">message</p>
@@ -22,9 +24,9 @@
 				th:utext="'Dr. '+${rv.creneaux.medecin.nom}+' '+${rv.creneaux.medecin.prenom}+', '+${rv.date}+', '+${rv.creneaux.hDebut}+'h'+${rv.creneaux.mDebut}"></a></li>
 		</ul>
 	</div>
-	<div class="informations">
+	<div class="informations"th:if="${medecinInfo != null}">
 		<div class="recap">
-			<ul th:if="${medecinInfo != null}">
+			<ul >
 				<li th:utext="'Dr.'+${medecinInfo.nom}+' '+${medecinInfo.prenom}">Dr. Lulu Patrick</li>
 				<li th:utext="${medecinInfo.specialite}">Spécialité du  médecin</li>
 				<li th:utext="${medecinInfo.tel}">Tel du médecin</li>
