@@ -33,7 +33,7 @@ public class User {
 	private String password;
 
 	@NotNull
-//	@Pattern(regexp = "^[123]{1}$")	
+//	@Pattern(regexp = "^[123]{1}$", message="veuillez renseigner votre statut")	
 	private Integer droits;
 
 	@Override

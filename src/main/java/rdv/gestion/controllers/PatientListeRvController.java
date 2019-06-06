@@ -23,7 +23,7 @@ import rdv.gestion.repository.PatientRepository;
 import rdv.gestion.repository.RvRepository;
 
 @Controller
-@SessionAttributes({ "droits", "id", "patient_id" })
+@SessionAttributes({ "droits", "id", "model_id" })
 public class PatientListeRvController {
 
 	@ModelAttribute("titre")
@@ -46,7 +46,7 @@ public class PatientListeRvController {
 			return "redirect:/pageLogin";
 		} else {
 			// on récupère la liste des rendez vous du patient
-			model.addAttribute("rendezVous",rvRepository.findByPatient_id(Integer.parseInt(session.getAttribute("patient_id").toString())));
+			model.addAttribute("rendezVous",rvRepository.findByPatient_id(Integer.parseInt(session.getAttribute("model_id").toString())));
 			return "patientListeRv";
 		}
 	}
@@ -58,7 +58,7 @@ public class PatientListeRvController {
 			return "redirect:/pageLogin";
 		} else {
 			// on récupère la liste des rendez vous du patient
-			model.addAttribute("rendezVous",rvRepository.findByPatient_id(Integer.parseInt(session.getAttribute("patient_id").toString())));			
+			model.addAttribute("rendezVous",rvRepository.findByPatient_id(Integer.parseInt(session.getAttribute("model_id").toString())));			
 			if (!rvRepository.findById(rv_id).isPresent()) {
 				redirectAttributes.addFlashAttribute("message",
 						String.format("Ce rendez vous n'existe pas"));			
@@ -96,8 +96,8 @@ public class PatientListeRvController {
 				}
 				rv.setDate(stringToDate);
 				rv.setCreneaux(creneauxRepository.findById(Integer.parseInt(creneau_id)).get());
-				session.getAttribute("patient_id");
-				rv.setPatient(patientRepository.findById(Integer.parseInt(session.getAttribute("patient_id").toString())).get());
+				session.getAttribute("model_id");
+				rv.setPatient(patientRepository.findById(Integer.parseInt(session.getAttribute("model_id").toString())).get());
 				try {
 					rvRepository.save(rv);
 				}catch(RuntimeException e) {

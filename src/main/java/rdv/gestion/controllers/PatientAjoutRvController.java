@@ -25,7 +25,7 @@ import rdv.gestion.repository.PatientRepository;
 import rdv.gestion.repository.RvRepository;
 
 @Controller
-@SessionAttributes({ "droits", "id", "patient_id" })
+@SessionAttributes({ "droits", "id", "model_id" })
 public class PatientAjoutRvController {
 
 	@ModelAttribute("titre")
@@ -63,8 +63,8 @@ public class PatientAjoutRvController {
 						String.format("Ce medecin n'existe pas."));	
 				return "redirect:/patientAjoutRv";
 			} else {
-				// on recherche le patient par son id "patient_id" stocké dans la session
-				model.addAttribute("patient", patientRepository.findById(Integer.parseInt(session.getAttribute("patient_id").toString())));
+				// on recherche le patient par son id "model_id" stocké dans la session
+				model.addAttribute("patient", patientRepository.findById(Integer.parseInt(session.getAttribute("model_id").toString())));
 				model.addAttribute("medecinInfo", medecinRepository.findById(medecin_id).get());
 				model.addAttribute("medecins", medecinRepository.findAll());
 				return "/patientAjoutRv";
@@ -93,7 +93,7 @@ public class PatientAjoutRvController {
 			}
 			rv.setDate(stringToDate);
 			rv.setCreneaux(creneauxRepository.findById(Integer.parseInt(creneau_id)).get());
-			rv.setPatient(patientRepository.findById(Integer.parseInt(session.getAttribute("patient_id").toString())).get()); 
+			rv.setPatient(patientRepository.findById(Integer.parseInt(session.getAttribute("model_id").toString())).get()); 
 			// on essaye de sauvegarder le creneaux, si il est déjà pris un erreur sql est levé
 			try {
 				rvRepository.save(rv);

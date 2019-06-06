@@ -2,25 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title th:text="${titre}">titre</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/adminPatients.css}" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title th:text="${titre}">titre</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/adminPatients.css}" />
 </head>
 <header>
 	<ul>
-	<li><a th:href="@{/pageLogin}">Accueil</a><li>
-	<li><a th:href="@{/adminPatients}">Patients</a></li>
-	<li><a th:href="@{/adminMedecins}">Medecins</a></li>
+		<li><a th:href="@{/logout}">Deconnexion</a></li>
+		<li><a th:href="@{/adminPatients}">Patients</a></li>
+		<li><a th:href="@{/adminMedecins}">Medecins</a></li>
 	</ul>
 </header>
-<body>	
+<body>
 	<section>
 		<h3>Liste des patients</h3>
-	<div class="liste">
-		<ul>
-			<li th:each="patient : ${patients}" ><a th:href="@{'/adminPatients/getPatient/'+${patient.id}}" th:utext="${patient.nom}+' '+${patient.prenom}"></a></li>
-		</ul>
-	</div>
+		<div class="liste">
+			<ul>
+				<li th:each="patient : ${patients}"><a
+					th:href="@{'/adminPatients/getPatient/'+${patient.id}}"
+					th:utext="${patient.nom}+' '+${patient.prenom}"></a></li>
+			</ul>
+		</div>
 	</section>
 	<footer>
 		<h3>Fiche Informations Patient</h3>
@@ -28,91 +31,102 @@
 		<form th:action="@{/adminPatients/setPatient}" method="POST">
 			<div class="formulaire">
 				<div class="formGauche">
-				<input type="hidden" th:field="${patient.id}">
-				<input type="hidden" th:field="${patient.user.id}">
+					<input type="hidden" th:field="${patient.id}"> <input
+						type="hidden" th:field="${patient.user.id}">
 					<div>
-						<label for="numSecu">Numero SS:</label>
-						<input type="text" th:field="${patient.numSecu}" size="50" >
-						<span class="formError" th:if="${#fields.hasErrors('patient.numSecu')}"
+						<label for="numSecu">Numero SS:</label> <input type="text"
+							th:field="${patient.numSecu}" size="50"> <span
+							class="formError" th:if="${#fields.hasErrors('patient.numSecu')}"
 							th:errors="${patient.numSecu}">Saisie invalide.</span>
-					</div>				
+					</div>
 					<div>
-						<label for="nom">Nom :</label>
-						<input type="text" th:field="${patient.nom}" size="25">
-						<span class="formError" th:if="${#fields.hasErrors('patient.nom')}"
+						<label for="civilite">Civilité</label> <select
+							th:field="${patient.civilite}" size="5">
+							<option selected value="M.">M.</option>
+							<option value="Mme">Mme</option>
+						</select>
+					</div>
+					<div>
+						<label for="nom">Nom :</label> <input type="text"
+							th:field="${patient.nom}" size="25"> <span
+							class="formError" th:if="${#fields.hasErrors('patient.nom')}"
 							th:errors="${patient.nom}">Saisie invalide.</span>
 					</div>
 					<div>
-						<label for="prenom">Prenom :</label>
-						<input type="text" th:field="${patient.prenom}" size="25">
-						<span class="formError" th:if="${#fields.hasErrors('patient.prenom')}"
+						<label for="prenom">Prenom :</label> <input type="text"
+							th:field="${patient.prenom}" size="25"> <span
+							class="formError" th:if="${#fields.hasErrors('patient.prenom')}"
 							th:errors="${patient.prenom}">Saisie invalide.</span>
 					</div>
 					<div>
-						<label for="tel">Num tel :</label>
-						<input type="text" th:field="${patient.tel}" size="25">
-						<span class="formError" th:if="${#fields.hasErrors('patient.tel')}"
+						<label for="tel">Num tel :</label> <input type="text"
+							th:field="${patient.tel}" size="25"> <span
+							class="formError" th:if="${#fields.hasErrors('patient.tel')}"
 							th:errors="${patient.tel}">Saisie invalide.</span>
 					</div>
-	  			</div> 
+				</div>
 				<div class="formDroite">
 					<div>
-						<label for="mail">Mail :</label>
-						<input type="text" th:field="${patient.mail}" size="25">
-						<span class="formError" th:if="${#fields.hasErrors('patient.mail')}"
+						<label for="mail">Mail :</label> <input type="text"
+							th:field="${patient.mail}" size="25"> <span
+							class="formError" th:if="${#fields.hasErrors('patient.mail')}"
 							th:errors="${patient.mail}">Saisie invalide.</span>
 					</div>
 					<div>
-						<label for="adresse">Adresse :</label>
-						<input type="text" th:field="${patient.adresse}" size="25">
-						<span class="formError" th:if="${#fields.hasErrors('patient.adresse')}"
+						<label for="adresse">Adresse :</label> <input type="text"
+							th:field="${patient.adresse}" size="25"> <span
+							class="formError" th:if="${#fields.hasErrors('patient.adresse')}"
 							th:errors="${patient.adresse}">Saisie invalide.</span>
 					</div>
 					<div>
-						<label for="ville">Ville :</label>
-						<input type="text" th:field="${patient.ville}" size="25">
-						<span class="formError" th:if="${#fields.hasErrors('patient.ville')}"
+						<label for="ville">Ville :</label> <input type="text"
+							th:field="${patient.ville}" size="25"> <span
+							class="formError" th:if="${#fields.hasErrors('patient.ville')}"
 							th:errors="${patient.ville}">Saisie invalide.</span>
 					</div>
 					<div>
-						<label for="cp">Code postal :</label>
-						<input type="text" th:field="${patient.cp}" size="25">
-						<span class="formError" th:if="${#fields.hasErrors('patient.cp')}"
+						<label for="cp">Code postal :</label> <input type="text"
+							th:field="${patient.cp}" size="25"> <span
+							class="formError" th:if="${#fields.hasErrors('patient.cp')}"
 							th:errors="${patient.cp}">Saisie invalide.</span>
 					</div>
 				</div>
-				<div>			
-	  				<label for="sexe">Sexe</label>
-	  				<select th:field="${patient.sexe}">
-		  				<option value="f" th:selected="${patient.sexe=='f'}">F</option>
-		  				<option value="h" th:selected="${patient.sexe=='h'}">H</option>
-	  				</select>
-	  			</div>		    
-			    <div>
-			        <label for="identifiant">Identifitant :</label>
-			        <input type="text" th:field="${patient.user.identifiant}">
-			        <span class="formError" th:if="${#fields.hasErrors('patient.user.identifiant')}" th:errors="${patient.user.identifiant}">identifiant invalide</span>        
-			    </div>
-			    <div class="mdp">
-			        <label for="password">Mdp :</label>
-			        <input type="text" th:field="${patient.user.password}">
-			        <span class="formError" th:if="${#fields.hasErrors('patient.user.password')}" th:errors="${patient.user.password}">password invalide</span>
-			    </div>		  			
+				<div>
+					<label for="sexe">Sexe</label> <select th:field="${patient.sexe}">
+						<option value="f" th:selected="${patient.sexe=='f'}">F</option>
+						<option value="h" th:selected="${patient.sexe=='h'}">H</option>
+					</select>
+				</div>
+				<div>
+					<label for="identifiant">Identifitant :</label> <input type="text"
+						th:field="${patient.user.identifiant}"> <span
+						class="formError"
+						th:if="${#fields.hasErrors('patient.user.identifiant')}"
+						th:errors="${patient.user.identifiant}">identifiant
+						invalide</span>
+				</div>
+				<div class="mdp">
+					<label for="password">Mdp :</label> <input type="text"
+						th:field="${patient.user.password}"> <span
+						class="formError"
+						th:if="${#fields.hasErrors('patient.user.password')}"
+						th:errors="${patient.user.password}">password invalide</span>
+				</div>
 			</div>
-			<div class="bouton">		
-			<button type="submit" name="add" value="add">Ajouter</button>
-			<button type="submit" name="update" value="update">Modifier</button>
-			<button type="submit" name="delete" value="delete">Supprimer</button>
+			<div class="bouton">
+				<button type="submit" name="add" value="add">Ajouter</button>
+				<button type="submit" name="update" value="update">Modifier</button>
+				<button type="submit" name="delete" value="delete">Supprimer</button>
 			</div>
 		</form>
 		<div class="rechercher">
 			<form th:action="@{/adminPatients/researchPatient}" method="POST">
 				<div>
-	  				<input type="text" id="rechercher" name="rechercher" size="300">
-	  				<input type="submit" value="Rechercher">
-	  			</div>
-	  		</form>
-		</div>	
-	</footer>		
+					<input type="text" id="rechercher" name="rechercher" size="300">
+					<input type="submit" value="Rechercher">
+				</div>
+			</form>
+		</div>
+	</footer>
 </body>
 </html>

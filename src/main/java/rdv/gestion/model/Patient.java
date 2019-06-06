@@ -29,6 +29,9 @@ public class Patient {
 	@Pattern(regexp = "^([0-9]{13})$", message = "Format saisie invalide")
 	private String numSecu;
 	@NotNull
+	@Pattern(regexp = "(M\\.)?(Mme)?", message = "format invalide")
+	private String civilite;	
+	@NotNull
 	@Pattern(regexp = "^[a-zA-Zàâéèëêïîôùüçœ\\'’ -]{2,25}$", message = "Format du nom invalide")
 	private String nom;
 	@NotNull
@@ -130,6 +133,12 @@ public class Patient {
 	}
 	public void setNumSecu(String numSecu) {
 		this.numSecu = numSecu;
+	}
+	public String getCivilite() {
+		return civilite;
+	}
+	public void setCivilite(String civilite) {
+		this.civilite = civilite;
 	}
 	public User getUser() {
 		return user;

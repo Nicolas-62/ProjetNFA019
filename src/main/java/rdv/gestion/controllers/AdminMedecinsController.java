@@ -54,7 +54,9 @@ public class AdminMedecinsController {
 
 	@RequestMapping(value = { "/adminMedecins" }, method = RequestMethod.GET)
 	public String adminMedecins(@ModelAttribute("medecin") Medecin medecin, HttpSession session, Model model) {
-		if (!"1".equals(session.getAttribute("droits").toString().toString())) {
+		System.out.println("admin"+session.getAttribute("droits").toString().toString());
+		if (!"1".equals(session.getAttribute("droits").toString())) {
+			
 			return "redirect:/pageLogin";
 		} else {
 			model.addAttribute("medecins", medecinRepository.findAll());

@@ -1,32 +1,23 @@
 package rdv.gestion.controllers;
 
-import java.util.Iterator;
-
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import rdv.gestion.model.Medecin;
-import rdv.gestion.model.Patient;
-import rdv.gestion.model.User;
 import rdv.gestion.repository.MedecinRepository;
 import rdv.gestion.repository.PatientRepository;
+import rdv.gestion.repository.RvRepository;
 import rdv.gestion.repository.UserRepository;
 
 @Controller
-@SessionAttributes({ "droits" , "id"})
+@SessionAttributes({ "droits" , "model_id"})
 public class MedecinController {
 
 	public static boolean containsIgnoreCase(String str, String subString) {
@@ -39,12 +30,26 @@ public class MedecinController {
 	UserRepository userRepository;
 	@Autowired
 	PatientRepository patientRepository;
-
-	@RequestMapping(value = { "medecin" }, method = RequestMethod.GET)
-	public String medecin(Model model) {
-		return "medecin";
+	@Autowired
+	RvRepository rvRepository;
+	@RequestMapping(value = { "medecinCherche" }, method = RequestMethod.GET)
+	public String medecinCherche(Model model) {
+		return "medecinCherche";
 	}
 
-
+	@RequestMapping(value = { "medecinListeRv" }, method = RequestMethod.GET)
+	public String medecin(Model model, HttpSession session) {
+		model.addAttribute("patients", patientRepository.findByRvMedecin(Integer.parseInt(session.getAttribute("model_id").toString())));
+		
+		return "medecinListeRv";
+	}
+	@RequestMapping(value = { "medecinListeRv/getPatient/{patient_id}"}, method = RequestMethod.GET)
+	public String medecinGetPatientRv(@PathVariable("patient_id") Integer patient_id, Model model,
+			HttpSession session) {
+		model.addAttribute("patients", patientRepository.findByRvMedecin(Integer.parseInt(session.getAttribute("model_id").toString())));
+		model.addAttribute("patientRv", rvRepository.findByPatientMedecin(patient_id, Integer.parseInt(session.getAttribute("model_id").toString())));
+		model.addAttribute("patient", patientRepository.findById(patient_id).get());
+		return "medecinListeRv";
+	}
 
 }

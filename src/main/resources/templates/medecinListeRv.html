@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="N Sergent N Lourdel"/>
+<title th:text="${titre}">titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/medecinListeRv.css}" />
+</head>
+<header>
+	<ul>
+		<li><a th:href="@{/logout}">Deconnexion</a></li>
+		<li><a th:href="@{/medecinListeRv}">Mes consultations</a></li>
+		<li><a th:href="@{/medecinCherche}">Chercher un medecin</a></li>
+	</ul> 
+</header>
+<body>
+	<p th:text="${message}">message</p>
+	<div class="listePatients">
+		<h3>Liste des patients</h3>
+			<ul>
+				<li th:each="patient : ${patients}"><a
+					th:href="@{'/medecinListeRv/getPatient/'+${patient.id}}"
+					th:utext="${patient.nom}+', '+${patient.prenom}+' '+${patient.numSecu}"></a></li>
+			</ul>
+	</div>
+	<div class="informations">
+		<div class="listeRv">
+			<h3>Liste des consultations</h3>
+				<ul th:if="${patientRv != null}">
+					<li th:each="rv : ${patientRv}"><a
+						th:utext="${#dates.format(rv.date, 'dd/MM/yyyy')}+', '+${rv.creneaux.hDebut}+'h'+${rv.creneaux.mDebut}"></a></li>
+				</ul>
+		</div>	
+		<div class="FicheInfoPatient">
+		<h3>Liste informations patients</h3>
+			<ul th:if="${patient != null}">
+				<li th:utext="${patient.civilite}+' '+${patient.nom}+', '+${patient.prenom}">nom</li>
+				<li th:utext="${patient.numSecu}">numSecu</li>
+				<li th:utext="${patient.adresse}">Adresse</li>
+				<li th:utext="${patient.cp}+' '+${patient.ville}">Cp et ville</li>		
+				<li th:utext="${patient.tel}">Tel</li>
+				<li th:utext="${patient.mail}">Mail</li>
+			</ul>
+		</div>
+	</div>
+</body>

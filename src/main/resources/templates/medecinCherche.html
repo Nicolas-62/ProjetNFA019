@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="N Sergent N Lourdel"/>
+<title th:text="${titre}">titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/medecinCherche.css}" />
+</head>
+<header>
+	<ul>
+		<li><a th:href="@{/logout}">Deconnexion</a></li>
+		<li><a th:href="@{/medecinListeRv}">Mes consultations</a></li>
+		<li><a th:href="@{/medecinRecherche}">Chercher un medecin</a></li>
+	</ul> 
+</header>
+<body>
+	<div class="rechercher">
+		<form>
+			<div>
+				<input type="text" id="rechercher" name="rechercher" size="100">
+				<input type="button" value="Rechercher">
+			</div>
+		</form>
+	</div>
+	<div class="liste">
+		<div class="liste1">
+			<h3>Liste des Medecins</h3>
+			<ul>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+				<li>JEan Marc morandini</li>
+			</ul>
+		</div>

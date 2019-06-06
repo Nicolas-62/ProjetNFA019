@@ -10,14 +10,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import rdv.gestion.model.User;
+import rdv.gestion.repository.MedecinRepository;
 import rdv.gestion.repository.PatientRepository;
 import rdv.gestion.repository.UserRepository;
 
 @Controller
-@SessionAttributes({ "droits" , "id", "patient_id"})
+// model_id = id de l'entité concernée, patient ou medecin
+@SessionAttributes({ "droits" , "id", "model_id"})
 public class LoginController {
 
 	public static boolean containsIgnoreCase(String str, String subString) {
@@ -27,7 +30,8 @@ public class LoginController {
 	UserRepository userRepository;
 	@Autowired
 	PatientRepository patientRepository;
-
+	@Autowired
+	MedecinRepository medecinRepository;
 
 	// page d'accueil...
 	@RequestMapping(value = { "/" , "/pageLogin"}, method = RequestMethod.GET)
@@ -37,11 +41,19 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = { "/pageLogin" }, method = RequestMethod.POST)
-	public String pagelogin(@Valid User user, BindingResult results, Model model, HttpSession session) {
+	public String pagelogin(@Valid User user, BindingResult results, 
+			Model model, HttpSession session,
+			@RequestParam(required = false, value = "deconnect") String deconnect) {
 		model.addAttribute("titre", String.format("login"));
+		//destruction de la session précedente
+		// redirection vers le LogoutController
+		if(deconnect != null) {
+			return "redirect:/logout";			
+		}
 		if (results.hasErrors()) {
 			return "pageLogin";
 		} else {
+			
 			// si aucun utilisateur avec cet identifiant n'a été trouvé :
 			if (userRepository.findByIdentifiant(user.getIdentifiant()) == null) {
 				model.addAttribute("titre", String.format("login"));
@@ -64,16 +76,17 @@ public class LoginController {
 					// sinon on redirige vers la page autorisée
 				} else {
 					session.setAttribute("droits", userFound.getDroits());
-					session.setAttribute("id", userFound.getId());
-					
+					session.setAttribute("id", userFound.getId());				
 					if (userFound.getDroits() == 1) {
 						return "redirect:/adminPatients";
-					} else if (userFound.getDroits() == 2) {						
-						return "redirect:/medecin";
+					} else if (userFound.getDroits() == 2) {	
+						// on récupère l'id du medecin à partir de l'id user stocké en session et on le stocke en session
+						session.setAttribute("model_id", medecinRepository.findByUser_id(Integer.parseInt(session.getAttribute("id").toString())).getId());						
+						return "redirect:/medecinListeRv";
 						// droits=3 : droits d'accès patient
 					} else {
 						// on récupère l'id du patient à partir de l'id user stocké en session et on le stocke en session
-						session.setAttribute("patient_id", patientRepository.findByUser_id(Integer.parseInt(session.getAttribute("id").toString())).getId());						
+						session.setAttribute("model_id", patientRepository.findByUser_id(Integer.parseInt(session.getAttribute("id").toString())).getId());						
 						return "redirect:/patientAjoutRv";
 					}
 				}
