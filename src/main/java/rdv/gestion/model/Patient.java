@@ -35,7 +35,7 @@ public class Patient {
 	@Pattern(regexp = "^[a-zA-Zàâéèëêïîôùüçœ\\'’ -]{2,25}$", message = "Format du nom invalide")
 	private String nom;
 	@NotNull
-	@Size(min = 2, max = 30)
+	@Size(max = 30)
 	@Pattern(regexp = "^[a-zA-Zàâéèëêïîôùüçœ\\'’ -]{2,25}$", message = "Format du nom invalide")
 	private String prenom;
 	@NotNull

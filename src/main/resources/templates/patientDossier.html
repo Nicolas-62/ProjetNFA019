@@ -15,72 +15,18 @@
 	</ul>
 </header>
 <body>
-	<div class="rechercher">
-		<form>
-			<div>
-  				<input type="text" id="rechercher" name="rechercher" size="100">
-  				<input type="button" value="Rechercher">
-  			</div>
-  		</form>
+	<div class="dossier">
+		<h4>Mon Dossier</h4>
+		<table>
+				<tr><td>Numero SS</td><td th:utext="${patient.numSecu}"></td></tr>
+				<tr><td>Nom</td><td th:utext="${patient.nom}"></td></tr>
+				<tr><td>Prenom</td><td th:utext="${patient.prenom}"></td></tr>
+				<tr><td>Sexe</td><td th:utext="${patient.sexe}"></td></tr>
+				<tr><td>Adresse</td><td th:utext="${patient.adresse}"></td></tr>
+				<tr><td>Ville</td><td th:utext="${patient.ville}"></td></tr>
+				<tr><td>CP</td><td th:utext="${patient.cp}"></td></tr>
+				<tr><td>Tel</td><td th:utext="${patient.tel}"></td></tr>
+				<tr><td>Email</td><td th:utext="${patient.mail}"></td></tr>
+		</table>
 	</div>
-	<div class="liste">
-		<div class="liste1">
-			<h3>Liste des consultations effectuees</h3>
-				<ul>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-					<li>JEan Marc morandini</li>
-				</ul>
-		</div>
-	<div class="liste2">
-		<h3>Liste des consultations a venir</h3>
-			<ul>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-			</ul>
-	</div>
-</div>
-	<div class="recap">
-	<tableau>
-		<h4>Recapitulatif informations patients</h4>
-			<tr>Numero SS</tr></br>
-			<tr>Nom</tr></br>
-			<tr>Prenom</tr></br>
-			<tr>Sexe</tr></br>
-			<tr>Adresse</tr></br>
-			<tr>Ville</tr></br>
-			<tr>CP</tr>
-			<tr>Tel</tr>
-			<tr>Email</tr>
-	</tableau>
-	</div>
-
-</div>
 </body>

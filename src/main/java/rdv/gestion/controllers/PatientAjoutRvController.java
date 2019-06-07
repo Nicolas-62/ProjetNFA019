@@ -1,6 +1,5 @@
 package rdv.gestion.controllers;
 
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import rdv.gestion.model.Patient;
 import rdv.gestion.model.Rv;
 import rdv.gestion.repository.CreneauxRepository;
 import rdv.gestion.repository.MedecinRepository;

@@ -16,32 +16,19 @@
 </header>
 <body>
 	<div class="rechercher">
-		<form>
+		<form th:action="@{/medecinCherche}" method="POST">
 			<div>
-				<input type="text" id="rechercher" name="rechercher" size="100">
-				<input type="button" value="Rechercher">
-			</div>
-		</form>
-	</div>
+  				<input type="text" id="rechercher" name="rechercher" size="300">
+  				<input type="submit" value="Rechercher">
+  			</div>
+  		</form>
+	</div>	
+	<section>
+		<h3>Liste des medecins</h3>
 	<div class="liste">
-		<div class="liste1">
-			<h3>Liste des Medecins</h3>
-			<ul>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-				<li>JEan Marc morandini</li>
-			</ul>
-		</div>
+		<ul>
+			<li th:each="medecin : ${medecins}"><a th:href="@{'/adminMedecins/getMedecin/'+${medecin.id}}" th:utext="${medecin.nom}+' '+${medecin.prenom}"></a></li>
+		</ul>
+	</div>
+	</section>
+</body>
