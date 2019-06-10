@@ -1,78 +1,48 @@
-header{
-	display:flex;
+header {
+	display: flex;
 	justify-content: center;
 }
+
 header ul {
- padding:0;
- margin:0;
- list-style-type:none;
- }
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
 header li {
- margin-left:2px;
- float:left; /*pour IE*/
- }
+	margin-left: 2px;
+	float: left; /*pour IE*/
+}
+
 header ul li a {
- display:block;
- float:left;   
- width:100px;
- height:35px;
- background-color:#6495ED;
- color:black;
- text-decoration:none;
- text-align:center;
- padding:5px;
- border:2px solid;
- /*pour avoir un effet "outset" avec IE :*/
- border-color:#DCDCDC #696969 #696969 #DCDCDC;
- }
-.rechercher{
-	margin-top: 5%;
-	display: flex;
-    justify-content: center;
+	display: block;
+	float: left;
+	width: 100px;
+	height: 35px;
+	background-color: #6495ED;
+	color: black;
+	text-decoration: none;
+	text-align: center;
+	padding: 5px;
+	border: 2px solid;
+	/*pour avoir un effet "outset" avec IE :*/
+	border-color: #DCDCDC #696969 #696969 #DCDCDC;
 }
-.liste{
-	display: flex;
-	margin: auto;
-	 margin-top: 25px;
-	justify-content: center;
-	/*width: 80%;*/
-}
-.liste1{
-    height: 30vh;
-    overflow-y: scroll;
-    position: relative;
 
-    background-color: white; 
-    width: 40%;
+.dossier {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5em;
+	width: 6em;
+	display: block;
 }
-body{
-	margin: auto;
-    background-color: #00BFFF;
-}
-.liste2{
-	height: 30vh;
-    overflow-y: scroll;
-    position: relative;
-   
-    margin-left:10px;
-    background-color: white;
-    width: 40%; }
-.recap{
-  margin: auto;
-  padding: auto;
 
-  width: 300px;
-  /* Encadré pour voir les limites du formulaire */
-  padding: 2em;
-  border: 3px solid #CCC;
-  border-radius: 2em;
-  background-color:white;
-  display: block;
-	margin-top: 3%;
-	display: flex;
-    justify-content: center;
+body {
+	margin: auto;
+	background-color: #00BFFF;
 }
-h2{
+
+h4 {
 	color: white;
 	text-align: center;
 }

@@ -40,7 +40,9 @@
 							th:errors="${patient.numSecu}">Saisie invalide.</span>
 					</div>
 					<div>
-						<label for="civilite">Civilité</label> <select
+						<label for="civilite">Civilité</label>
+						<input> 
+						<select
 							th:field="${patient.civilite}" size="5">
 							<option selected value="M.">M.</option>
 							<option value="Mme">Mme</option>
