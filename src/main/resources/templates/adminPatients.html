@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title th:text="${titre}">titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}" />
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/adminPatients.css}" />
 </head>
@@ -41,9 +42,8 @@
 					</div>
 					<div>
 						<label for="civilite">Civilité</label>
-						<input> 
 						<select
-							th:field="${patient.civilite}" size="5">
+							th:field="${patient.civilite}" size="1">
 							<option selected value="M.">M.</option>
 							<option value="Mme">Mme</option>
 						</select>

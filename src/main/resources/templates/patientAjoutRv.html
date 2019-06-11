@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title th:text="${titre}">titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/patientAjoutRv.css}" />
 </head>
 <header>
@@ -32,8 +33,10 @@
 				th:utext="${medecin.nom}+' '+${medecin.prenom}"></a></li>
 		</ul>
 	</div>
+		
 	<div class="informations" th:if="${medecinInfo != null}" >
 		<div class="recap" >
+		<img th:src="@{/img/doctor.png}"/>
 			<ul >
 				<li th:utext="'Dr.'+${medecinInfo.nom}+' '+${medecinInfo.prenom}">Dr. Lulu Patrick</li>
 				<li th:utext="${medecinInfo.specialite}">Spécialité du  médecin</li>

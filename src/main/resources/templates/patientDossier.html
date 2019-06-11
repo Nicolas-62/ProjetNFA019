@@ -2,14 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title th:text="${titre}">titre</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/patientDossier.css}" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title th:text="${titre}">titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/patientDossier.css}" />
 </head>
 <header>
 	<ul>
-		<li><a th:href="@{/logout}">Deconnexion</a></li> 
-		<li><a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a></li> 
+		<li><a th:href="@{/logout}">Deconnexion</a></li>
+		<li><a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a></li>
 		<li><a th:href="@{/patientListeRv}">Mes Rendez vous</a></li>
 		<li><a th:href="@{/patientDossier}">Mon Dossier</a></li>
 	</ul>
@@ -18,15 +20,42 @@
 	<div class="dossier">
 		<h4>Mon Dossier</h4>
 		<table>
-				<tr><td>Numero SS</td><td th:utext="${patient.numSecu}"></td></tr>
-				<tr><td>Nom</td><td th:utext="${patient.nom}"></td></tr>
-				<tr><td>Prenom</td><td th:utext="${patient.prenom}"></td></tr>
-				<tr><td>Sexe</td><td th:utext="${patient.sexe}"></td></tr>
-				<tr><td>Adresse</td><td th:utext="${patient.adresse}"></td></tr>
-				<tr><td>Ville</td><td th:utext="${patient.ville}"></td></tr>
-				<tr><td>CP</td><td th:utext="${patient.cp}"></td></tr>
-				<tr><td>Tel</td><td th:utext="${patient.tel}"></td></tr>
-				<tr><td>Email</td><td th:utext="${patient.mail}"></td></tr>
+			<tr>
+				<td>Numero SS</td>
+				<td th:utext="${patient.numSecu}"></td>
+			</tr>
+			<tr>
+				<td>Nom</td>
+				<td th:utext="${patient.nom}"></td>
+			</tr>
+			<tr>
+				<td>Prenom</td>
+				<td th:utext="${patient.prenom}"></td>
+			</tr>
+			<tr>
+				<td>Sexe</td>
+				<td th:utext="${patient.sexe}"></td>
+			</tr>
+			<tr>
+				<td>Adresse</td>
+				<td th:utext="${patient.adresse}"></td>
+			</tr>
+			<tr>
+				<td>Ville</td>
+				<td th:utext="${patient.ville}"></td>
+			</tr>
+			<tr>
+				<td>CP</td>
+				<td th:utext="${patient.cp}"></td>
+			</tr>
+			<tr>
+				<td>Tel</td>
+				<td th:utext="${patient.tel}"></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td th:utext="${patient.mail}"></td>
+			</tr>
 		</table>
 	</div>
 </body>

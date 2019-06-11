@@ -1,98 +1,78 @@
+body {
+	background-color: #00BFFF;
+}
 
-header{
-	display:flex;
+.rechercher {
+	margin-top: 5%;
+	display: flex;
 	justify-content: center;
 }
-header ul {
- padding:0;
- margin:0;
- list-style-type:none;
- }
-header li {
- margin-left:2px;
- float:left; /*pour IE*/
- }
-header ul li a {
- display:block;
- float:left;   
- width:100px;
- height:35px;
- background-color:#6495ED;
- color:black;
- text-decoration:none;
- text-align:center;
- padding:5px;
- border:2px solid;
- /*pour avoir un effet "outset" avec IE :*/
- border-color:#DCDCDC #696969 #696969 #DCDCDC;
- }
- body{
-background-color:#00BFFF;
-}
-.rechercher{
-  margin-top: 5%;
-  display: flex;
-    justify-content: center;
+
+.liste1 {
+	margin: auto;
+	margin-top: 25px;
+	padding: auto;
+	height: 30vh;
+	overflow-y: scroll;
+	position: relative;
+	background-color: white;
+	width: 60%;
 }
 
-.liste1{
-    margin: auto;
-    margin-top: 25px;
-  padding: auto;
-    height: 30vh;
-    overflow-y: scroll;
-    position: relative;
-    background-color: white; 
-    width: 60%;
+.informations {
+	display: flex;
+	margin: auto;
+	margin-top: 25px;
+	justify-content: space-around;
 }
-.informations{
-  display: flex;
-  margin: auto;
-   margin-top: 25px;
-  justify-content: space-around;
-}
-.recap{
-  padding: auto;
-  width: 40%;
-  /* Encadré pour voir les limites du formulaire */
-  padding: 2em;
-  border: 3px solid #CCC;
-  border-radius: 2em;
-  background-color:white;
-  display: block;
-  margin-top: 3%;
-  display: flex;
-  justify-content: center;
 
+.recap {
+	padding: auto;
+	width: 40%;
+	/* Encadré pour voir les limites du formulaire */
+	padding: 2em;
+	border: 3px solid #CCC;
+	border-radius: 2em;
+	background-color: white;
+	display: block;
+	margin-top: 3%;
+	display: flex;
+	justify-content: center;
 }
-.consultation{
-  padding: auto;
-  width: 40%;
-  /* Encadré pour voir les limites du formulaire */
-  padding: 1em;
-  border: 3px solid #CCC;
-  border-radius: 2em;
-  background-color:white;
-  display: block;
-  margin-top: 3%;
-  display: flex;
-  justify-content: center;
+
+.consultation {
+	padding: auto;
+	width: 40%;
+	/* Encadré pour voir les limites du formulaire */
+	padding: 1em;
+	border: 3px solid #CCC;
+	border-radius: 2em;
+	background-color: white;
+	display: block;
+	margin-top: 3%;
+	display: flex;
+	justify-content: center;
 }
-h3{
-  color: white;
-  text-align: center;
+
+h3 {
+	color: white;
+	text-align: center;
 }
+
 label {
-  /* Pour être sûrs que toutes les étiquettes ont même taille et sont correctement alignées */
-  display: inline-block;
-  width: 90px;
+	/* Pour être sûrs que toutes les étiquettes ont même taille et sont correctement alignées */
+	display: inline-block;
+	width: 90px;
 }
-button{
-  margin-top: 2%;
+
+button {
+	margin-top: 2%;
 }
-label,input{
-  margin-top: 1%;
+
+label, input {
+	margin-top: 1%;
 }
-.consultation input{
-  width: 150px;
+
+.consultation input {
+	width: 150px;
 }

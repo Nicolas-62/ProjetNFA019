@@ -1,40 +1,4 @@
-header{
-	display:flex;
-	justify-content: center;
-}
-header ul {
- padding:0;
- margin:0;
- list-style-type:none;
- }
-header li {
- margin-left:2px;
- float:left; /*pour IE*/
- }
-header ul li a {
- display:block;
- float:left;   
- width:100px;
- height:35px;
- background-color:#6495ED;
- color:black;
- text-decoration:none;
- text-align:center;
- padding:5px;
- border:2px solid;
- /*pour avoir un effet "outset" avec IE :*/
- border-color:#DCDCDC #696969 #696969 #DCDCDC;
- }
-header{
-    background-color: #00BFFF;
-    position: fixed;
-    right: 0;
-    top: 0;
-    left: 0;
-    height: 70px;
-    z-index: 1030;
-    box-sizing: border-box;
-}	
+
 footer{
 	background-color: #00BFFF;
     position: fixed;
@@ -91,4 +55,8 @@ input{
 .formError {
   color : red;
   display : block;
+}
+h3{
+	color: white;
+	text-align: center;
 }
