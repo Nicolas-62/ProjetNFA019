@@ -1,35 +1,9 @@
-header{
-	display:flex;
-	justify-content: center;
-}
-header ul {
- padding:0;
- margin:0;
- list-style-type:none;
- }
-header li {
- margin-left:2px;
- float:left; /*pour IE*/
- }
-header ul li a {
- display:block;
- float:left;   
- width:100px;
- height:35px;
- background-color:#6495ED;
- color:black;
- text-decoration:none;
- text-align:center;
- padding:5px;
- border:2px solid;
- /*pour avoir un effet "outset" avec IE :*/
- border-color:#DCDCDC #696969 #696969 #DCDCDC;
- }
 body{
 background-color:#00BFFF;
 }
 .listePatients{
     margin: auto;
+    padding:1em;
     margin-top: 25px;
  	padding: auto;
     height: 30vh;
@@ -38,6 +12,16 @@ background-color:#00BFFF;
     background-color: white; 
     width: 60%;
 }
+.listePatients ul{
+	list-style-type: none;
+}
+.listePatients a:hover {
+  background-color: yellow;
+}
+.listePatients a{
+  text-decoration: none;
+  }
+
 .informations{
   display: flex;
    margin-top: 25px;
@@ -46,13 +30,14 @@ background-color:#00BFFF;
 .listeRv{
   width: 20%;
   /* Encadré pour voir les limites du formulaire */
-  padding: 2em;
+  padding: 1em;
   border: 3px solid #CCC;
   border-radius: 2em;
   background-color:white;
   margin-top: 3%;
   justify-content: center;
 }
+
 .FicheInfoPatient{
   width: 60%;
   /* Encadré pour voir les limites du formulaire */
@@ -64,9 +49,13 @@ background-color:#00BFFF;
   align-items: center;
 
 }
-h2{
+h3{
   color: white;
   text-align: center;
+}
+ h4{
+	color:black;
+	text-align: center;
 }
 .FicheInfoPatient h3{
 	margin-top: 6%;

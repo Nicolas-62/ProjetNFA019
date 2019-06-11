@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="author" content="N Sergent N Lourdel"/>
 <title th:text="${titre}">Chercher medecin</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/medecinCherche.css}" />
 </head>
 <header>
@@ -15,6 +16,7 @@
 	</ul> 
 </header>
 <body>
+<h3>Liste des medecins</h3>
 	<div class="rechercher">
 		<form th:action="@{/medecinCherche}" method="POST">
 			<div>
@@ -24,7 +26,7 @@
   		</form>
 	</div>	
 	<section>
-		<h3>Liste des medecins</h3>
+		
 	<div class="liste">
 		<ul>
 			<li th:each="medecin : ${medecins}"><a th:href="@{'/adminMedecins/getMedecin/'+${medecin.id}}" th:utext="${medecin.nom}+' '+${medecin.prenom}"></a></li>
