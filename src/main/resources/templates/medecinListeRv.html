@@ -3,44 +3,47 @@
 	xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="author" content="N Sergent N Lourdel"/>
+<meta name="author" content="N Sergent N Lourdel" />
 <title th:text="${titre}">titre</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/medecinListeRv.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/medecinListeRv.css}" />
 </head>
 <header>
+	<img id="imgLogin" src="/img/caducee.png" alt="" />
 	<ul>
 		<li><a th:href="@{/logout}">Deconnexion</a></li>
 		<li><a th:href="@{/medecinListeRv}">Mes consultations</a></li>
 		<li><a th:href="@{/medecinCherche}">Chercher un medecin</a></li>
-	</ul> 
+	</ul>
 </header>
 <body>
 	<p th:text="${message}">message</p>
-		<h3>Liste des patients</h3>
+	<h3>Liste des patients</h3>
 	<div class="listePatients">
-			<ul>
-				<li th:each="patient : ${patients}"><a
-					th:href="@{'/medecinListeRv/getPatient/'+${patient.id}}"
-					th:utext="${patient.nom}+', '+${patient.prenom}+' '+${patient.numSecu}"></a></li>
-			</ul>
+		<ul>
+			<li th:each="patient : ${patients}"><a
+				th:href="@{'/medecinListeRv/getPatient/'+${patient.id}}"
+				th:utext="${patient.nom}+', '+${patient.prenom}+' '+${patient.numSecu}"></a></li>
+		</ul>
 	</div>
 	<div class="informations" th:if="${patientRv != null}">
-	
+
 		<div class="listeRv">
-		<h4>Consultations</h4>
-				<ul >
-					<li th:each="rv : ${patientRv}"
-						th:utext="${#dates.format(rv.date, 'dd/MM/yyyy')}+', '+${rv.creneaux.hDebut}+'h'+${rv.creneaux.mDebut}"></li>
-				</ul>
-		</div>	
+			<h4>Consultations</h4>
+			<ul>
+				<li th:each="rv : ${patientRv}"
+					th:utext="${#dates.format(rv.date, 'dd/MM/yyyy')}+', '+${rv.creneaux.hDebut}+'h'+${rv.creneaux.mDebut}"></li>
+			</ul>
+		</div>
 		<div class="FicheInfoPatient" th:if="${patient != null}">
-		<h4>Informations patients</h4>
-			<ul >
-				<li th:utext="${patient.civilite}+' '+${patient.nom}+', '+${patient.prenom}">nom</li>
+			<h4>Informations patients</h4>
+			<ul>
+				<li
+					th:utext="${patient.civilite}+' '+${patient.nom}+', '+${patient.prenom}">nom</li>
 				<li th:utext="${patient.numSecu}">numSecu</li>
 				<li th:utext="${patient.adresse}">Adresse</li>
-				<li th:utext="${patient.cp}+' '+${patient.ville}">Cp et ville</li>		
+				<li th:utext="${patient.cp}+' '+${patient.ville}">Cp et ville</li>
 				<li th:utext="${patient.tel}">Tel</li>
 				<li th:utext="${patient.mail}">Mail</li>
 			</ul>

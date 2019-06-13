@@ -1,6 +1,4 @@
-
 header{
-    background-color: #00BFFF;
     position: fixed;
     right: 0;
     top: 0;
@@ -10,7 +8,6 @@ header{
     box-sizing: border-box;
 }
 footer{
-	background-color: #00BFFF;
     position: fixed;
     right: 0;
     bottom: 0;
@@ -22,7 +19,7 @@ footer{
 body{
 	margin-top:100px;
 	text-align:center;
-  	background-color: #00BFFF;
+  	background-color: #87ceeb;
 }
 .liste1{
     margin: auto;
@@ -51,4 +48,18 @@ body{
     background-color: white;
     width: 60%;
 }
+.informations{
+width: 40%;
+padding: 2em;
+border: 3px solid #CCC;
+border-radius: 2em;
+background-color: white;
+margin-top: 3%;
+margin: auto;
+}
+h3{
+	color:white;
+}
+ul{
+	list-style-type: none;
 }

@@ -13,8 +13,6 @@ public class LogoutController {
 	  @RequestMapping(method=RequestMethod.GET)
 	  public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
 	    session.invalidate();
-	    redirectAttributes.addFlashAttribute("message",
-				String.format("Vous êtes bien déconnecté."));
 	    return "redirect:/pageLogin";
 	  }
 

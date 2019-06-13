@@ -3,34 +3,50 @@
 	xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="author" content="N Sergent N Lourdel"/>
+<meta name="author" content="N Sergent N Lourdel" />
 <title th:text="${titre}">Chercher medecin</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/medecinCherche.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/medecinCherche.css}" />
 </head>
 <header>
 	<ul>
 		<li><a th:href="@{/logout}">Deconnexion</a></li>
 		<li><a th:href="@{/medecinListeRv}">Mes consultations</a></li>
 		<li><a th:href="@{/medecinRecherche}">Chercher un medecin</a></li>
-	</ul> 
+	</ul>
 </header>
 <body>
-<h3>Liste des medecins</h3>
+	<h3>Liste des medecins</h3>
 	<div class="rechercher">
 		<form th:action="@{/medecinCherche}" method="POST">
 			<div>
-  				<input type="text" id="rechercher" name="rechercher" size="300">
-  				<input type="submit" value="Rechercher">
-  			</div>
-  		</form>
-	</div>	
-	<section>
-		
-	<div class="liste">
-		<ul>
-			<li th:each="medecin : ${medecins}"><a th:href="@{'/adminMedecins/getMedecin/'+${medecin.id}}" th:utext="${medecin.nom}+' '+${medecin.prenom}"></a></li>
-		</ul>
+				<input type="text" id="rechercher" name="rechercher" size="300">
+				<input type="submit" value="Rechercher">
+			</div>
+		</form>
 	</div>
+	<section>
+
+		<div class="liste">
+			<ul>
+				<li th:each="medecin : ${medecins}"><a
+					th:href="@{'/medecinCherche/getMedecin/'+${medecin.id}}"
+					th:utext="${medecin.nom}+' '+${medecin.prenom}"></a></li>
+			</ul>
+		</div>
+
 	</section>
+	\
+	<div class="informations" th:if="${medecinInfo != null}">
+			<ul>
+				<li th:utext="'Dr.'+${medecinInfo.nom}+' '+${medecinInfo.prenom}">Dr.
+					Lulu Patrick</li>
+				<li th:utext="${medecinInfo.specialite}">Spécialité du médecin</li>
+				<li th:utext="${medecinInfo.tel}">Tel du médecin</li>
+				<li th:utext="${medecinInfo.adresse}">Adresse du médecin</li>
+				<li th:utext="${medecinInfo.cp}+' '+${medecinInfo.ville}">Cp et
+					ville</li>
+			</ul>
+		</div>
 </body>

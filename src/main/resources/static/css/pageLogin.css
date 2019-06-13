@@ -14,8 +14,8 @@ header{
 
 body {
 	height: 100vh;
-		background-color: #87ceeb;
-		margin-top: 10%;
+	background-color: #87ceeb;
+	margin-top: 10%;
 }
 
 form {
@@ -78,6 +78,6 @@ h1 {
 	max-height: 172px;
 	max-width: 800px;
 }
-img{
+#imgLogin{
 	height:125px;
 }
