@@ -1,32 +1,4 @@
 header{
-	display:flex;
-	justify-content: center;
-}
-header ul {
- padding:0;
- margin:0;
- list-style-type:none;
- }
-header li {
- margin-left:2px;
- float:left; /*pour IE*/
- }
-header ul li a {
- display:block;
- float:left;   
- width:100px;
- height:35px;
- background-color:#6495ED;
- color:black;
- text-decoration:none;
- text-align:center;
- padding:5px;
- border:2px solid;
- /*pour avoir un effet "outset" avec IE :*/
- border-color:#DCDCDC #696969 #696969 #DCDCDC;
- }
-header{
-    background-color: #00BFFF;
     position: fixed;
     right: 0;
     top: 0;
@@ -36,7 +8,6 @@ header{
     box-sizing: border-box;
 }
 footer{
-	background-color: #00BFFF;
     position: fixed;
     right: 0;
     bottom: 0;
@@ -46,8 +17,9 @@ footer{
     box-sizing: border-box;
    }
 body{
-	margin: auto;
-  	background-color: #00BFFF;
+	margin-top:100px;
+	text-align:center;
+  	background-color: #87ceeb;
 }
 .liste1{
     margin: auto;
@@ -60,8 +32,34 @@ body{
     width: 60%;
 }
 .rechercher{
-  margin-top: 100px;
+  text-align: center;
 }
 #rechercher{
     width: 50%;
+}
+.liste {
+	margin: auto;
+    margin-top: auto;
+    margin-top: 25px;
+    padding: auto;
+    height: 30vh;
+    overflow-y: scroll;
+    position: relative;
+    background-color: white;
+    width: 60%;
+}
+.informations{
+width: 40%;
+padding: 2em;
+border: 3px solid #CCC;
+border-radius: 2em;
+background-color: white;
+margin-top: 3%;
+margin: auto;
+}
+h3{
+	color:white;
+}
+ul{
+	list-style-type: none;
 }

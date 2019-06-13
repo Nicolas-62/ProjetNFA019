@@ -1,47 +1,83 @@
-body{
-	height: 100vh;
+section {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: linear-gradient(#40dfff, #0000);
+	
 }
-form {
-  /* Uniquement centrer le formulaire sur la page */
+header{
+	display: flex;
+	justify-content: center;
+	margin-left: 2%;
+	max-height: 150px;
 
-  width: 400px;
-  /* Encadré pour voir les limites du formulaire */
-  padding: 3em;
-  border: 3px solid #CCC;
-  border-radius: 2em;
-  background-color:#00BFFF;
-  box-sizing: border-box;
 }
-.champPassword{
+
+body {
+	height: 100vh;
+	background-color: #87ceeb;
+	margin-top: 10%;
+}
+
+form {
+	/* Uniquement centrer le formulaire sur la page */
+	width: 400px;
+	/* Encadré pour voir les limites du formulaire */
+	padding: 3em;
+	border: 3px solid #CCC;
+	border-radius: 2em;
+	background-color: #00BFFF;
+	box-sizing: border-box;
+}
+
+.champPassword {
 	min-height: 40px;
 }
-.champIdentifiant{
+
+.champIdentifiant {
 	min-height: 40px;
 }
-.radio{
+
+.radio {
 	margin-bottom: 15px;
 }
-.radio label{
+
+.radio label {
 	width: auto;
 }
+
 label {
-  /* Pour être sûrs que toutes les étiquettes ont même taille et sont correctement alignées */
-  display: inline-block;
-  width: 90px;
+	/* Pour être sûrs que toutes les étiquettes ont même taille et sont correctement alignées */
+	display: inline-block;
+	width: 90px;
 }
 
-.buttonCoDeco{
-  margin: auto;
-  font-family:cursive;
-  display: flex;
-  justify-content: center;
+.buttonCoDeco {
+	margin: auto;
+	font-family: cursive;
+	display: flex;
+	justify-content: center;
 }
-.formError{
+
+.formError {
 	display: block;
-	color:red;
-	font-style:italic;
+	color: red;
+	font-style: italic;
+}
+
+h1 {
+	font-size: 48px;
+	text-shadow: -1px -1px #f00, 1px 1px #a00, -3px 0 4px #000;
+	font-family: "Segoe print", Arial, Helvetica, sans-serif;
+	color: #dd0000;
+	font-weight: lighter;
+	box-shadow: none;
+	text-align: center;
+	display: block;
+	min-height: 152px;
+	min-width: 800;
+	max-height: 172px;
+	max-width: 800px;
+}
+#imgLogin{
+	height:125px;
 }

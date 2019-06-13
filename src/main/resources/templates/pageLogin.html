@@ -7,7 +7,12 @@
 <title th:text="${titre}">titre</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/pageLogin.css}" />
 </head>
+<header>
+<h1>DoctoBil</h1>
+<img id="imgLogin" src="/img/caducee.png" alt="" />
+</header>
 <body>
+<section>
 <form th:action="@{/pageLogin}" th:object="${user}" method="post">
     <div class="champIdentifiant">
         <label for="identifiant">Identifitant :</label>
@@ -32,4 +37,6 @@
 	</div>
 	<span data-th-text="${erreur}"></span>
 </form>
+</section>
+
 </body>

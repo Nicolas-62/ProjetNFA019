@@ -27,3 +27,9 @@ header ul li a {
  /*pour avoir un effet "outset" avec IE :*/
  border-color:#DCDCDC #696969 #696969 #DCDCDC;
  }
+ img{
+ position:absolute;
+ top:5px;
+ left:10px;
+ height:100px;
+ }

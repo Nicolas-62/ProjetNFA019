@@ -26,6 +26,14 @@ import rdv.gestion.repository.UserRepository;
 @SessionAttributes({ "droits" , "model_id"})
 public class MedecinController {
 
+	@ModelAttribute("titre")
+	private String titre() {
+		String titre = "Medecin";
+		return titre;
+	}
+private static Iterable<Medecin> medecinsAll;
+	
+
 	public static boolean containsIgnoreCase(String str, String subString) {
 		return str.toLowerCase().contains(subString.toLowerCase());
 	}
@@ -38,9 +46,15 @@ public class MedecinController {
 	PatientRepository patientRepository;
 	@Autowired
 	RvRepository rvRepository;
+	
+
 	@RequestMapping(value = { "medecinCherche" }, method = RequestMethod.GET)
-	public String medecinCherche(Model model) {
-		return "medecinCherche";
+	public String medecinCherche(Model model, HttpSession session) {
+		if (!"2".equals(session.getAttribute("droits").toString())) {
+			return "redirect:/pageLogin";
+		} else {	
+			return "medecinCherche";
+		}
 	}
 
 	@RequestMapping(value = { "medecinListeRv" }, method = RequestMethod.GET)
@@ -71,7 +85,7 @@ public class MedecinController {
 		if (!"2".equals(session.getAttribute("droits").toString())) {
 			return "redirect:/pageLogin";
 		} else {
-			Iterable<Medecin> medecinsAll = medecinRepository.findAll();
+			medecinsAll = medecinRepository.findAll();
 			Iterator<Medecin> medecins = medecinsAll.iterator();
 			while (medecins.hasNext()) {
 				Medecin p = medecins.next();
@@ -86,5 +100,16 @@ public class MedecinController {
 			model.addAttribute("medecins", medecinsAll);
 			return "medecinCherche";
 		}
-	}	
+	}
+	@RequestMapping(value = {"medecinCherche/getMedecin/{medecin_id}"}, method = RequestMethod.GET)
+	public String medecinChercheGetMedecin(@PathVariable("medecin_id") Integer medecin_id, Model model,
+			HttpSession session) {
+		if (!"2".equals(session.getAttribute("droits").toString())) {
+			return "redirect:/pageLogin";
+		} else {
+			model.addAttribute("medecinInfo",medecinRepository.findById(medecin_id).get());
+			model.addAttribute("medecins", medecinsAll);
+			return "medecinCherche";
+		}
+	}
 }
