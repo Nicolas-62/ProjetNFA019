@@ -1,7 +1,6 @@
 header{
-	margin-top:5px;
 	display:flex;
-	justify-content: center;
+	justify-content: space-between;
 }
 header ul {
  padding:0;
@@ -9,7 +8,7 @@ header ul {
  list-style-type:none;
  }
 header li {
- margin-left:2px;
+ margin-left:20px;
  float:left; /*pour IE*/
  }
 header ul li a {
@@ -28,8 +27,24 @@ header ul li a {
  border-color:#DCDCDC #696969 #696969 #DCDCDC;
  }
  img{
- position:absolute;
- top:5px;
+ top:0px;
  left:10px;
  height:100px;
+ }
+ header div{
+ width: 33%;
+ }
+ .Deconnexion{
+ 	display:flex;
+ 	justify-content: right;
+ 	margin-top: 15px;
+ 	margin-right: 5px;
+ }
+ .logoTitre{
+ display:flex;
+ }
+ .boutonCentrale{
+ margin-top: 15px;
+ display: flex;
+ justify-content: center;
  }

@@ -10,11 +10,21 @@
 	th:href="@{/css/medecinCherche.css}" />
 </head>
 <header>
-	<ul>
-		<li><a th:href="@{/logout}">Deconnexion</a></li>
-		<li><a th:href="@{/medecinListeRv}">Mes consultations</a></li>
-		<li><a th:href="@{/medecinRecherche}">Chercher un medecin</a></li>
-	</ul>
+	<div class="logoTitre">
+		<img id="imgLogin" src="/img/caducee.png" alt="" />
+		<h1>Chercher medecin</h1>
+	</div>
+	<div class="boutonCentrale">
+		<ul>
+			<li><a th:href="@{/medecinListeRv}">Mes consultations</a></li>
+			<li><a th:href="@{/medecinCherche}">Chercher un medecin</a></li>
+		</ul>
+	</div>
+	<div class="Deconnexion">
+		<ul>
+			<li><a th:href="@{/logout}">Deconnexion</a></li>
+		</ul>
+	</div>
 </header>
 <body>
 	<h3>Liste des medecins</h3>
@@ -39,14 +49,14 @@
 	</section>
 	\
 	<div class="informations" th:if="${medecinInfo != null}">
-			<ul>
-				<li th:utext="'Dr.'+${medecinInfo.nom}+' '+${medecinInfo.prenom}">Dr.
-					Lulu Patrick</li>
-				<li th:utext="${medecinInfo.specialite}">Spécialité du médecin</li>
-				<li th:utext="${medecinInfo.tel}">Tel du médecin</li>
-				<li th:utext="${medecinInfo.adresse}">Adresse du médecin</li>
-				<li th:utext="${medecinInfo.cp}+' '+${medecinInfo.ville}">Cp et
-					ville</li>
-			</ul>
-		</div>
+		<ul>
+			<li th:utext="'Dr.'+${medecinInfo.nom}+' '+${medecinInfo.prenom}">Dr.
+				Lulu Patrick</li>
+			<li th:utext="${medecinInfo.specialite}">Spécialité du médecin</li>
+			<li th:utext="${medecinInfo.tel}">Tel du médecin</li>
+			<li th:utext="${medecinInfo.adresse}">Adresse du médecin</li>
+			<li th:utext="${medecinInfo.cp}+' '+${medecinInfo.ville}">Cp et
+				ville</li>
+		</ul>
+	</div>
 </body>

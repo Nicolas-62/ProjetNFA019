@@ -37,7 +37,7 @@ body{
 #rechercher{
     width: 50%;
 }
-.liste {
+.liste{
 	margin: auto;
     margin-top: auto;
     margin-top: 25px;
@@ -58,7 +58,7 @@ margin-top: 3%;
 margin: auto;
 }
 h3{
-	color:white;
+	color:black;
 }
 ul{
 	list-style-type: none;

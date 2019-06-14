@@ -1,5 +1,5 @@
 body {
-	background-color: #00BFFF;
+	background-color: #87ceeb;
 }
 
 .rechercher {
@@ -53,9 +53,12 @@ body {
 	display: flex;
 	justify-content: center;
 }
+ul{
+	list-style-type: none;
+}
 
 h3 {
-	color: white;
+	color: balck;
 	text-align: center;
 }
 

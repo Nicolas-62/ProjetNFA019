@@ -9,12 +9,22 @@
 	th:href="@{/css/patientDossier.css}" />
 </head>
 <header>
-	<ul>
-		<li><a th:href="@{/logout}">Deconnexion</a></li>
-		<li><a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a></li>
-		<li><a th:href="@{/patientListeRv}">Mes Rendez vous</a></li>
-		<li><a th:href="@{/patientDossier}">Mon Dossier</a></li>
-	</ul>
+	<div class="logoTitre">
+	<img src="/img/caducee.png" alt="" />
+		<h1>Mon dossier</h1>
+	</div>
+	<div class="boutonCentrale">
+		<ul>
+			<li><a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a></li>
+			<li><a th:href="@{/patientListeRv}">Mes Rendez vous</a></li>
+			<li><a th:href="@{/patientDossier}">Mon Dossier</a></li>
+		</ul>
+	</div>
+	<div class="Deconnexion">
+		<ul>
+			<li><a th:href="@{/logout}">Deconnexion</a></li>
+		</ul>
+	</div>
 </header>
 <body>
 	<div class="dossier">

@@ -5,16 +5,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title th:text="${titre}">titre</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}" />
-<link rel="stylesheet" type="text/css"
-	th:href="@{/css/admin.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" />
 </head>
 <header>
-	<img src="/img/caducee.png" alt="" />
-	<ul>
-		<li><a th:href="@{/logout}">Deconnexion</a></li>
-		<li><a th:href="@{/adminPatients}">Patients</a></li>
-		<li><a th:href="@{/adminMedecins}">Medecins</a></li>
-	</ul>
+	<div class="logoTitre">
+		<img src="/img/caducee.png" alt="" />
+		<h1>Espace admin</h1>
+	</div>
+	<div class="boutonCentrale">
+		<ul>
+			<li><a th:href="@{/adminMedecins}">Medecins</a></li>
+			<li><a th:href="@{/adminPatients}">Patients</a></li>
+		</ul>
+	</div>
+	<div class="Deconnexion">
+		<ul>
+			<li><a th:href="@{/logout}">Deconnexion</a></li>
+		</ul>
+	</div>
 </header>
 <body>
 	<section>
@@ -42,8 +50,7 @@
 							th:errors="${patient.numSecu}">Saisie invalide.</span>
 					</div>
 					<div>
-						<label for="civilite">Civilité</label>
-						<select
+						<label for="civilite">Civilité</label> <select
 							th:field="${patient.civilite}" size="1">
 							<option selected value="M.">M.</option>
 							<option value="Mme">Mme</option>

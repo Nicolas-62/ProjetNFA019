@@ -10,12 +10,21 @@
 	th:href="@{/css/medecinListeRv.css}" />
 </head>
 <header>
-	<img id="imgLogin" src="/img/caducee.png" alt="" />
-	<ul>
+	<div class="logoTitre">
+		<img id="imgLogin" src="/img/caducee.png" alt="" />
+		<h1>Mes consultations</h1>
+	</div>
+	<div>
+		<ul>
+			<li><a th:href="@{/medecinListeRv}">Mes consultations</a></li>
+			<li><a th:href="@{/medecinCherche}">Chercher un medecin</a></li>
+		</ul>
+	</div>
+	<div class="Deconnexion">
+		<ul>
 		<li><a th:href="@{/logout}">Deconnexion</a></li>
-		<li><a th:href="@{/medecinListeRv}">Mes consultations</a></li>
-		<li><a th:href="@{/medecinCherche}">Chercher un medecin</a></li>
-	</ul>
+		</ul>
+	</div>
 </header>
 <body>
 	<p th:text="${message}">message</p>

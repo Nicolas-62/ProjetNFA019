@@ -87,7 +87,7 @@ public class LoginController {
 					} else {
 						// on récupère l'id du patient à partir de l'id user stocké en session et on le stocke en session
 						session.setAttribute("model_id", patientRepository.findByUser_id(Integer.parseInt(session.getAttribute("id").toString())).getId());						
-						return "redirect:/patientAjoutRv";
+						return "redirect:/patientListeRv";
 					}
 				}
 			}

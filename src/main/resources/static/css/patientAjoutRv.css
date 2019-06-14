@@ -1,72 +1,76 @@
-
-body{
-background-color:#00BFFF;
-}
-.rechercher{
-  margin-top: 5%;
-  display: flex;
-  justify-content: center;
-  witdh:60%;
+body {
+	background-color: #87ceeb;
 }
 
-.liste1{
-    margin: auto;
-    margin-top: 25px;
-  padding: auto;
-    height: 30vh;
-    overflow-y: scroll;
-    position: relative;
-    background-color: white; 
-    width: 60%;
+.rechercher {
+	display: flex;
+	justify-content: center;
+	witdh: 60%;
 }
-.informations{
-  display: flex;
-  margin: auto;
-   margin-top: 25px;
-  justify-content: space-around;
-}
-.recap{
-  padding: auto;
-  width: 40%;
-  /* Encadré pour voir les limites du formulaire */
-  padding: 2em;
-  border: 3px solid #CCC;
-  border-radius: 2em;
-  background-color:white;
-  display: block;
-  margin-top: 3%;
-  display: flex;
-  justify-content: center;
 
+.liste1 {
+	margin: auto;
+	margin-top: 25px;
+	padding: auto;
+	height: 30vh;
+	overflow-y: scroll;
+	position: relative;
+	background-color: white;
+	width: 60%;
 }
-.consultation{
-  padding: auto;
-  width: 40%;
-  /* Encadré pour voir les limites du formulaire */
-  padding: 1em;
-  border: 3px solid #CCC;
-  border-radius: 2em;
-  background-color:white;
-  display: block;
-  margin-top: 3%;
-  display: flex;
-  justify-content: center;
+
+.informations {
+	display: flex;
+	margin: auto;
+	margin-top: 25px;
+	justify-content: space-around;
 }
-h2, h3{
-  color: white;
-  text-align: center;
+
+.recap {
+	padding: auto;
+	width: 40%;
+	/* Encadré pour voir les limites du formulaire */
+	padding: 2em;
+	border: 3px solid #CCC;
+	border-radius: 2em;
+	background-color: white;
+	display: block;
+	display: flex;
+	justify-content: center;
 }
+
+.consultation {
+	padding: auto;
+	width: 40%;
+	/* Encadré pour voir les limites du formulaire */
+	padding: 1em;
+	border: 3px solid #CCC;
+	border-radius: 2em;
+	background-color: white;
+	display: block;
+	display: flex;
+	justify-content: center;
+}
+
+h2, h3 {
+	color: black;
+	text-align: center;
+}
+
 label {
-  /* Pour être sûrs que toutes les étiquettes ont même taille et sont correctement alignées */
-  display: inline-block;
-  width: 90px;
+	/* Pour être sûrs que toutes les étiquettes ont même taille et sont correctement alignées */
+	display: inline-block;
+	width: 90px;
 }
-button{
-  margin-top: 2%;
+
+button {
+	margin-top: 2%;
 }
-label,input{
-  margin-top: 1%;
+
+label, input {
+	margin-top: 1%;
 }
-.consultation input{
-  width: 150px;
+
+.consultation input {
+	width: 150px;
 }

@@ -5,15 +5,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title th:text="${titre}">titre</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/patientAjoutRv.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/patientAjoutRv.css}" />
 </head>
 <header>
-	<ul>
-		<li><a th:href="@{/logout}">Deconnexion</a></li> 
-		<li><a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a></li> 
-		<li><a th:href="@{/patientListeRv}">Mes Rendez vous</a></li>
-		<li><a th:href="@{/patientDossier}">Mon Dossier</a></li>
-	</ul>
+	<div class="logoTitre">
+	<img src="/img/caducee.png" alt="" />
+		<h1>Prendre un rdv</h1>
+	</div>
+	<div class="boutonCentrale">
+		<ul>
+			<li><a th:href="@{/patientAjoutRv}">Prendre un Rendez vous</a></li>
+			<li><a th:href="@{/patientListeRv}">Mes Rendez vous</a></li>
+			<li><a th:href="@{/patientDossier}">Mon Dossier</a></li>
+		</ul>
+	</div>
+	<div class="Deconnexion">
+		<ul>
+			<li><a th:href="@{/logout}">Deconnexion</a></li>
+		</ul>
+	</div>
 </header>
 <body>
 	<div class="rechercher">
@@ -33,56 +44,60 @@
 				th:utext="${medecin.nom}+' '+${medecin.prenom}"></a></li>
 		</ul>
 	</div>
-		
-	<div class="informations" th:if="${medecinInfo != null}" >
-		<div class="recap" >
-		<img th:src="@{/img/doctor.png}"/>
-			<ul >
-				<li th:utext="'Dr.'+${medecinInfo.nom}+' '+${medecinInfo.prenom}">Dr. Lulu Patrick</li>
-				<li th:utext="${medecinInfo.specialite}">Spécialité du  médecin</li>
+
+	<div class="informations" th:if="${medecinInfo != null}">
+		<div class="recap">
+			<img th:src="@{/img/doctor.png}" />
+			<ul>
+				<li th:utext="'Dr.'+${medecinInfo.nom}+' '+${medecinInfo.prenom}">Dr.
+					Lulu Patrick</li>
+				<li th:utext="${medecinInfo.specialite}">Spécialité du médecin</li>
 				<li th:utext="${medecinInfo.tel}">Tel du médecin</li>
 				<li th:utext="${medecinInfo.adresse}">Adresse du médecin</li>
-				<li th:utext="${medecinInfo.cp}+' '+${medecinInfo.ville}">Cp et ville</li>		
+				<li th:utext="${medecinInfo.cp}+' '+${medecinInfo.ville}">Cp et
+					ville</li>
 			</ul>
 		</div>
 		<div class="consultation">
 			<form th:action="@{/patientAjoutRv/addRv}" method="post">
 				<h4>Demander une consultation</h4>
-					<div>	
-						<label for="numSecu">Numero SS:</label>
-						<input type="text" th:field="${patient.numSecu}" size="25" >
-						<span class="formError" th:if="${#fields.hasErrors('patient.numSecu')}"
-							th:errors="${patient.numSecu}">Saisie invalide.</span>
-					</div>				
-					<div>
-						<label for="nom">Nom :</label>
-						<input type="text" th:field="${patient.nom}" size="25">
-						<span class="formError" th:if="${#fields.hasErrors('patient.nom')}"
-							th:errors="${patient.nom}">Saisie invalide.</span>
-					</div>
-					<div>
-						<label for="prenom">Prenom :</label>
-						<input type="text" th:field="${patient.prenom}" size="25">
-						<span class="formError" th:if="${#fields.hasErrors('patient.prenom')}"
-							th:errors="${patient.prenom}">Saisie invalide.</span>
-					</div>
-					<div>
-						<label for="tel">Num tel :</label>
-						<input type="text" th:field="${patient.tel}" size="25">
-						<span class="formError" th:if="${#fields.hasErrors('patient.tel')}"
-							th:errors="${patient.tel}">Saisie invalide.</span>
-					</div>
-					<div>
-						<label for="date">Date :</label> <input type="date" id="date"
-							name="date">
-	
-					</div>
-					<div>
-						<label for="creneaux">Heure :</label> 
-						<select th:field="${medecinInfo.creneaux}" size="1">
-							<option th:each="creneau : ${medecinInfo.creneaux}" th:text="${creneau.hDebut}+':'+${creneau.mDebut}" th:value="${creneau.id}">HH:MM</option>
-						</select>					
-					</div>
+				<div>
+					<label for="numSecu">Numero SS:</label> <input type="text"
+						th:field="${patient.numSecu}" size="25"> <span
+						class="formError" th:if="${#fields.hasErrors('patient.numSecu')}"
+						th:errors="${patient.numSecu}">Saisie invalide.</span>
+				</div>
+				<div>
+					<label for="nom">Nom :</label> <input type="text"
+						th:field="${patient.nom}" size="25"> <span
+						class="formError" th:if="${#fields.hasErrors('patient.nom')}"
+						th:errors="${patient.nom}">Saisie invalide.</span>
+				</div>
+				<div>
+					<label for="prenom">Prenom :</label> <input type="text"
+						th:field="${patient.prenom}" size="25"> <span
+						class="formError" th:if="${#fields.hasErrors('patient.prenom')}"
+						th:errors="${patient.prenom}">Saisie invalide.</span>
+				</div>
+				<div>
+					<label for="tel">Num tel :</label> <input type="text"
+						th:field="${patient.tel}" size="25"> <span
+						class="formError" th:if="${#fields.hasErrors('patient.tel')}"
+						th:errors="${patient.tel}">Saisie invalide.</span>
+				</div>
+				<div>
+					<label for="date">Date :</label> <input type="date" id="date"
+						name="date">
+
+				</div>
+				<div>
+					<label for="creneaux">Heure :</label> <select
+						th:field="${medecinInfo.creneaux}" size="1">
+						<option th:each="creneau : ${medecinInfo.creneaux}"
+							th:text="${creneau.hDebut}+':'+${creneau.mDebut}"
+							th:value="${creneau.id}">HH:MM</option>
+					</select>
+				</div>
 				<button type="submit">Prendre un Rendez vous</button>
 			</form>
 		</div>
