@@ -28,7 +28,6 @@ public class Rv {
 	
 	@Column(name="date")
 	@NotNull
-	@Temporal(TemporalType.DATE)
 	private Date date;
 	
 	// un rendez vous correspond à un creneau donné
