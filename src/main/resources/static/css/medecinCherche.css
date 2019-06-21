@@ -7,6 +7,11 @@ header{
     z-index: 1030;
     box-sizing: border-box;
 }
+body{
+	margin-top:100px;
+	text-align:center;
+  	background-color: #87ceeb;
+}
 footer{
     position: fixed;
     right: 0;
@@ -16,11 +21,6 @@ footer{
     z-index: 1030;
     box-sizing: border-box;
    }
-body{
-	margin-top:100px;
-	text-align:center;
-  	background-color: #87ceeb;
-}
 .liste1{
     margin: auto;
     margin-top: 25px;

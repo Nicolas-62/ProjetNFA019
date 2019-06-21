@@ -31,9 +31,6 @@ header ul li a {
  left:10px;
  height:100px;
  }
- header div{
- width: 33%;
- }
  .Deconnexion{
  	display:flex;
  	justify-content: right;
@@ -45,6 +42,7 @@ header ul li a {
  }
  .boutonCentrale{
  margin-top: 15px;
+ margin-right: 100px;
  display: flex;
  justify-content: center;
  }

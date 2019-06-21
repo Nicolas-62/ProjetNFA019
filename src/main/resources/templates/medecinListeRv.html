@@ -14,7 +14,7 @@
 		<img id="imgLogin" src="/img/caducee.png" alt="" />
 		<h1>Mes consultations</h1>
 	</div>
-	<div>
+	<div class="boutonCentrale">
 		<ul>
 			<li><a th:href="@{/medecinListeRv}">Mes consultations</a></li>
 			<li><a th:href="@{/medecinCherche}">Chercher un medecin</a></li>
@@ -54,7 +54,7 @@
 				<li th:utext="${patient.adresse}">Adresse</li>
 				<li th:utext="${patient.cp}+' '+${patient.ville}">Cp et ville</li>
 				<li th:utext="${patient.tel}">Tel</li>
-				<li th:utext="${patient.mail}">Mail</li>
+				<li><a th:href="'mailto:'+${patient.mail}" th:utext="${patient.mail}">adresse mail</a></li>
 			</ul>
 		</div>
 	</div>

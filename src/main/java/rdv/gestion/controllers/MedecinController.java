@@ -53,6 +53,7 @@ private static Iterable<Medecin> medecinsAll;
 		if (!"2".equals(session.getAttribute("droits").toString())) {
 			return "redirect:/pageLogin";
 		} else {	
+			model.addAttribute("medecins", medecinRepository.findAll());
 			return "medecinCherche";
 		}
 	}

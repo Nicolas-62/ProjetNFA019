@@ -1,5 +1,16 @@
+header{
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    height: 70px;
+    z-index: 1030;
+    box-sizing: border-box;
+}
 body{
-background-color:#87ceeb;
+	margin-top:100px;
+	text-align:center;
+  	background-color: #87ceeb;
 }
 .listePatients{
     margin: auto;

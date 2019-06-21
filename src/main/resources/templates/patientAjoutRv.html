@@ -56,6 +56,7 @@
 				<li th:utext="${medecinInfo.adresse}">Adresse du médecin</li>
 				<li th:utext="${medecinInfo.cp}+' '+${medecinInfo.ville}">Cp et
 					ville</li>
+				<li><a th:href="'mailto:'+${medecinInfo.mail}" th:utext="${medecinInfo.mail}">adresse mail</a></li>
 			</ul>
 		</div>
 		<div class="consultation">
