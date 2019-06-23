@@ -39,10 +39,11 @@ public class AdminPatientsController {
 	private static boolean containsIgnoreCase(String str, String subString) {
 		return str.toLowerCase().contains(subString.toLowerCase());
 	}
-
+	/*
+	 * Retourne la liste des patients et le formulaire d'ajout/suppression d'un patient.
+	 */
 	@RequestMapping(value = { "/adminPatients" }, method = RequestMethod.GET)
 	public String adminPatients(@ModelAttribute("patient") Patient patient, Model model, HttpSession session) {
-		System.out.println("admin"+session.getAttribute("droits").toString());
 		if (!"1".equals(session.getAttribute("droits").toString())) {
 			return "redirect:/pageLogin";
 		} else {
@@ -50,7 +51,10 @@ public class AdminPatientsController {
 			return "adminPatients";
 		}
 	}
-
+	/*
+	 * retourne la liste des patients, le détail du patient cliqué,
+	 * et le formulaire d'ajout/suppression d'un patient.
+	 */
 	@RequestMapping(value = { "/adminPatients/getPatient/{patient_id}" }, method = RequestMethod.GET)
 	public String adminPatientsGetPatient(@PathVariable("patient_id") Integer patient_id, Model model,
 			HttpSession session) {
@@ -65,7 +69,10 @@ public class AdminPatientsController {
 			return "adminPatients";
 		}
 	}
-	
+	/*
+	 * Retourne la liste des patients qui matchent avec la chaine de caractère envoyée
+	 * par l'utilisateur.
+	 */
 	@RequestMapping(value = { "/adminPatients/researchPatient" }, method = RequestMethod.POST)
 	public String adminPatientsResearchPatient(@ModelAttribute("patient") Patient patient,
 			@RequestBody String requestBody, @RequestParam(required = false, value = "rechercher") String slug,
@@ -89,7 +96,9 @@ public class AdminPatientsController {
 			return "adminPatients";
 		}
 	}
-
+	/*
+	 * Sauvegarde, modifie un patient.
+	 */
 	@RequestMapping(value = { "/adminPatients/setPatient" }, method = RequestMethod.POST)
 	public String adminPatientsSetPatient(@RequestParam(required = false, value = "add") String addFlag,
 			@RequestParam(required = false, value = "update") String updateFlag,
@@ -99,7 +108,6 @@ public class AdminPatientsController {
 			return "redirect:/pageLogin";
 		} else {
 			model.addAttribute("patients", patientRepository.findAll());
-			System.out.println("user id : " + patient.getUser().getId());
 			if (results.hasErrors()) {
 				return "adminPatients";
 			} else {
@@ -116,7 +124,6 @@ public class AdminPatientsController {
 							// si l'identifiant est unique
 							if (userRepository.findByIdentifiant(patient.getUser().getIdentifiant()) == null) {
 								// on sauvegarde
-								System.out.println(patient.getUser());
 								patient.getUser().setDroits(3);
 								userRepository.save(patient.getUser());
 								patientRepository.save(patient);

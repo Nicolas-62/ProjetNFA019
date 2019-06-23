@@ -51,7 +51,9 @@ public class AdminMedecinsController {
 	private static boolean containsIgnoreCase(String str, String subString) {
 		return str.toLowerCase().contains(subString.toLowerCase());
 	}
-
+	/*
+	 * Retourne la liste des médecins et le formulaire d'ajout/suppression d'un médecin.
+	 */	
 	@RequestMapping(value = { "/adminMedecins" }, method = RequestMethod.GET)
 	public String adminMedecins(@ModelAttribute("medecin") Medecin medecin, HttpSession session, Model model) {		
 		if (!"1".equals(session.getAttribute("droits").toString())) {
@@ -62,7 +64,10 @@ public class AdminMedecinsController {
 			return "adminMedecins";
 		}
 	}
-
+	/*
+	 * retourne la liste des médecins, le détail du médecin cliqué,
+	 * et le formulaire d'ajout/suppression d'un médecin.
+	 */
 	@RequestMapping(value = { "/adminMedecins/getMedecin/{medecin_id}" }, method = RequestMethod.GET)
 	public String adminMedecinsGetMedecin(@PathVariable("medecin_id") Integer medecin_id, Model model,
 			HttpSession session) {
@@ -76,7 +81,10 @@ public class AdminMedecinsController {
 			return "adminMedecins";
 		}
 	}
-
+	/*
+	 * Retourne la liste des médecins qui matchent avec la chaine de caractère envoyée
+	 * par l'utilisateur.
+	 */
 	@RequestMapping(value = { "/adminMedecins/researchMedecin" }, method = RequestMethod.POST)
 	public String adminMedecinsResearchMedecin(@ModelAttribute("medecin") Medecin medecin,
 			@RequestBody String requestBody, @RequestParam(required = false, value = "rechercher") String slug,
@@ -100,7 +108,9 @@ public class AdminMedecinsController {
 			return "adminMedecins";
 		}
 	}
-
+	/*
+	 * Sauvegarde, modifie un médecin.
+	 */
 	@RequestMapping(value = { "/adminMedecins/setMedecin" }, method = RequestMethod.POST)
 	public String adminMedecinsSetMedecin(@RequestParam(required = false, value = "add") String addFlag,
 			@RequestParam(required = false, value = "update") String updateFlag,

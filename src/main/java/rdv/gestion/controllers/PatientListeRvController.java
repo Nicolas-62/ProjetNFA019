@@ -23,9 +23,14 @@ import rdv.gestion.repository.PatientRepository;
 import rdv.gestion.repository.RvRepository;
 
 @Controller
+/*
+ * Attributs de session
+ */
 @SessionAttributes({ "droits", "id", "model_id" })
 public class PatientListeRvController {
-
+	/*
+	 * Titre de la page
+	 */
 	@ModelAttribute("titre")
 	private String titre() {
 		String titre = "Patient";
@@ -39,7 +44,10 @@ public class PatientListeRvController {
 	RvRepository rvRepository;
 	@Autowired
 	CreneauxRepository creneauxRepository;
-
+	
+	/*
+	 * Retourne la liste des rendez-vous d'un patient
+	 */
 	@RequestMapping(value = { "/patientListeRv" }, method = RequestMethod.GET)
 	public String patientListeRv(Model model, HttpSession session) {
 		if (!"3".equals(session.getAttribute("droits").toString())) {
@@ -50,7 +58,11 @@ public class PatientListeRvController {
 			return "patientListeRv";
 		}
 	}
-
+	/*
+	 * Retourne la liste des rendez-vous d'un patient,
+	 * le détail du rendez-vous cliqué et les infos du médecin avec lequel le rendez-vous
+	 * a été pris.
+	 */
 	@RequestMapping(value = { "/patientListeRv/getRv/{rv_id}" }, method = RequestMethod.GET)
 	public String patientListeRvGetRv(@PathVariable("rv_id") Integer rv_id, Model model,
 			HttpSession session, RedirectAttributes redirectAttributes) {
@@ -71,7 +83,9 @@ public class PatientListeRvController {
 			}
 		}
 	}
-
+	/*
+	 * Modifie ou supprime un rendez-vous
+	 */
 	@RequestMapping(value = { "/patientListeRv/setRv/{rv_id}" }, method = RequestMethod.POST)
 	public String patientListeRvSetRv(@PathVariable("rv_id") Integer rv_id, Model model, HttpSession session, 
 			@RequestParam(value = "date") String date,
@@ -109,9 +123,9 @@ public class PatientListeRvController {
 						String.format("Le rendez-vous a été modifié !"));
 			// SUPPRIMER RV
 			}else if(deleteFlag != null) {
+				rvRepository.delete(rv);
 				redirectAttributes.addFlashAttribute("message",
 						String.format("Le rendez-vous a été supprimé !"));
-				rvRepository.delete(rv);
 			}
 			return "redirect:/patientListeRv";
 		}

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+/*
+ * Supprime la session et renvoie à l'accueil
+ */
 @RequestMapping("/logout")
 public class LogoutController {
 	  @RequestMapping(method=RequestMethod.GET)

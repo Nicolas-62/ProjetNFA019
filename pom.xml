@@ -11,13 +11,14 @@
 	<groupId>rdv.gestion</groupId>
 	<artifactId>ProjetNFA019</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<!-- pour deploiemnt sur serveur tomcat -->
+	<packaging>war</packaging>
 	<name>ProjetNFA019</name>
 	<description>Projet final NFA019</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -31,7 +32,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!--  ajouté pour déploiement sur serveur tomcat -->
+		<!--  cet artifact est [provided], ç-à-d que les archives correspondantes ne seront pas placées dans le war généré. En
+effet, ces archives seront trouvées sur le serveur Tomcat sur lequel s'exécutera l'application ; -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!--  fin ajout -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

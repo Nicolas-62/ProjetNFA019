@@ -23,9 +23,6 @@ import rdv.gestion.repository.UserRepository;
 @SessionAttributes({ "droits" , "id", "model_id"})
 public class LoginController {
 
-	public static boolean containsIgnoreCase(String str, String subString) {
-		return str.toLowerCase().contains(subString.toLowerCase());
-	}
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
@@ -39,7 +36,10 @@ public class LoginController {
 		model.addAttribute("titre", String.format("login"));
 		return "pageLogin";
 	}
-
+	/*
+	 * Redirige vers l'espace utilisateur en fonction de ses droits,
+	 * vérifie son login et son mot de passe.
+	 */
 	@RequestMapping(value = { "/pageLogin" }, method = RequestMethod.POST)
 	public String pagelogin(@Valid User user, BindingResult results, 
 			Model model, HttpSession session,

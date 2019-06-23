@@ -23,9 +23,14 @@ import rdv.gestion.repository.PatientRepository;
 import rdv.gestion.repository.RvRepository;
 
 @Controller
+/*
+ * Attributs de session
+ */
 @SessionAttributes({ "droits", "id", "model_id" })
 public class PatientAjoutRvController {
-
+	/*
+	 * Titre de la page
+	 */
 	@ModelAttribute("titre")
 	private String titre() {
 		String titre = "Patient";
@@ -39,9 +44,12 @@ public class PatientAjoutRvController {
 	RvRepository rvRepository;
 	@Autowired
 	CreneauxRepository creneauxRepository;
-
+	/*
+	 * Retourne la page patientAjoutRv.html avec la liste des médecins dedans
+	 */
 	@RequestMapping(value = { "/patientAjoutRv" }, method = RequestMethod.GET)
-	public String patientAjoutRv(Model model, HttpSession session) {		
+	public String patientAjoutRv(Model model, HttpSession session) {
+		// si l'utilisateur n'est pas un patient on retourne la page d'accueil
 		if (!"3".equals(session.getAttribute("droits").toString())) {
 			return "redirect:/pageLogin";
 		} else {			
@@ -49,7 +57,10 @@ public class PatientAjoutRvController {
 			return "patientAjoutRv";
 		}
 	}
-
+	/*
+	 * Retourne les infos du médecin cliqué et le formulaire de prise de rendez-vous
+	 * pré-remplis avec les infos du patient, le tout dans la page patientAjoutRv.html 
+	 */
 	@RequestMapping(value = { "/patientAjoutRv/getMedecin/{medecin_id}" }, method = RequestMethod.GET)
 	public String patientAjoutRvGetMedecin(@PathVariable("medecin_id") Integer medecin_id, Model model,
 			HttpSession session, RedirectAttributes redirectAttributes) {
@@ -69,12 +80,14 @@ public class PatientAjoutRvController {
 			}
 		}
 	}
-
+	/*
+	 * Crée et sauvegarde un rendez-vous
+	 */
 	@RequestMapping(value = { "/patientAjoutRv/addRv" }, method = RequestMethod.POST)
 	public String patientAjoutRvAddRv(Model model, HttpSession session, @RequestParam(value = "date") String date,
 			@RequestParam(value = "creneaux") String creneau_id,
 			RedirectAttributes redirectAttributes){
-		System.out.println("date : "+date+ "creneau id : "+creneau_id);
+
 		if (!"3".equals(session.getAttribute("droits").toString())) {
 			return "redirect:/pageLogin";
 		} else {

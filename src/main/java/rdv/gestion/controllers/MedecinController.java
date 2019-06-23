@@ -23,17 +23,27 @@ import rdv.gestion.repository.RvRepository;
 import rdv.gestion.repository.UserRepository;
 
 @Controller
+/*
+ * Attributs de session
+ */
 @SessionAttributes({ "droits" , "model_id"})
 public class MedecinController {
-
+	/*
+	 * Titre de la page
+	 */
 	@ModelAttribute("titre")
 	private String titre() {
 		String titre = "Medecin";
 		return titre;
 	}
-private static Iterable<Medecin> medecinsAll;
+	/*
+	 * Liste pour stocker les médecins
+	 */
+	private static Iterable<Medecin> medecinsAll;
 	
-
+	/*
+	 * Méthode pour comparer deux chaînes quelque soit la casse
+	 */
 	public static boolean containsIgnoreCase(String str, String subString) {
 		return str.toLowerCase().contains(subString.toLowerCase());
 	}
@@ -47,9 +57,12 @@ private static Iterable<Medecin> medecinsAll;
 	@Autowired
 	RvRepository rvRepository;
 	
-
+	/*
+	 * Retourne la page de recherche d'un médecin et l'ensemble des médecins
+	 */
 	@RequestMapping(value = { "medecinCherche" }, method = RequestMethod.GET)
 	public String medecinCherche(Model model, HttpSession session) {
+		// si l'utilisateur n'a pas les droits de médecin il est renvoyé à la page d'accueil
 		if (!"2".equals(session.getAttribute("droits").toString())) {
 			return "redirect:/pageLogin";
 		} else {	
@@ -57,16 +70,22 @@ private static Iterable<Medecin> medecinsAll;
 			return "medecinCherche";
 		}
 	}
-
+	/*
+	 * Retourne la liste des patients avec lesquels le médecin a rendez-vous
+	 */
 	@RequestMapping(value = { "medecinListeRv" }, method = RequestMethod.GET)
 	public String medecin(Model model, HttpSession session) {
-		model.addAttribute("patients", patientRepository.findByRvMedecin(Integer.parseInt(session.getAttribute("model_id").toString())));
 		if (!"2".equals(session.getAttribute("droits").toString())) {
 			return "redirect:/pageLogin";
 		} else {	
+			model.addAttribute("patients", patientRepository.findByRvMedecin(Integer.parseInt(session.getAttribute("model_id").toString())));
 			return "medecinListeRv";
 		}
 	}
+	/*
+	 * Retourne le détail du patient cliqué, la liste des rendez-vous avec ce patient,
+	 * et la liste des patients avec lesquels le médecin a rendez-vous.
+	 */
 	@RequestMapping(value = { "medecinListeRv/getPatient/{patient_id}"}, method = RequestMethod.GET)
 	public String medecinGetPatientRv(@PathVariable("patient_id") Integer patient_id, Model model,
 			HttpSession session) {
@@ -79,6 +98,10 @@ private static Iterable<Medecin> medecinsAll;
 			return "medecinListeRv";
 		}
 	}
+	/*
+	 * retourne la liste des médecins qui matchent avec la chaîne de caratère envoyée par
+	 * l'utilisateur.
+	 */
 	@RequestMapping(value = { "/medecinCherche" }, method = RequestMethod.POST)
 	public String medecinCherche(@ModelAttribute("medecin") Medecin medecin,
 			@RequestBody String requestBody, @RequestParam(required = false, value = "rechercher") String slug,
@@ -86,7 +109,11 @@ private static Iterable<Medecin> medecinsAll;
 		if (!"2".equals(session.getAttribute("droits").toString())) {
 			return "redirect:/pageLogin";
 		} else {
+			/* on met l'ensemble des médecins dans l'objet iterable */
 			medecinsAll = medecinRepository.findAll();
+			/* l'iterator va permettre se supprimer de l'objet iterable
+			 * les médecins qui ne matchent pas.
+			 */
 			Iterator<Medecin> medecins = medecinsAll.iterator();
 			while (medecins.hasNext()) {
 				Medecin p = medecins.next();
@@ -98,10 +125,18 @@ private static Iterable<Medecin> medecinsAll;
 					medecins.remove();
 				}
 			}
+			/*
+			 * on passe au modèle l'objet iterable, le seul type d'objet que thymeleaf
+			 * peut parcourir.
+			 */
 			model.addAttribute("medecins", medecinsAll);
 			return "medecinCherche";
 		}
 	}
+	/*
+	 * Retourne le détail d'un médecin cliqué, et la liste des médecins trouvés 
+	 * dans laquelle celui ci est présent.
+	 */
 	@RequestMapping(value = {"medecinCherche/getMedecin/{medecin_id}"}, method = RequestMethod.GET)
 	public String medecinChercheGetMedecin(@PathVariable("medecin_id") Integer medecin_id, Model model,
 			HttpSession session) {

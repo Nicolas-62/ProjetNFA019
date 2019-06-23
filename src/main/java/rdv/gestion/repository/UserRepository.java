@@ -8,6 +8,9 @@ import rdv.gestion.model.User;
 public interface UserRepository extends CrudRepository<User, Integer> {
 	
 	User findByIdentifiant(String identifiant);
+	/*
+	 * Retourne un utilisateur en fonction de son login et mot de passe
+	 */
 	@Query("select x from User x where x.identifiant=?1 and x.password=?2")
 	User findUser(String identifiant, String password);
 }
