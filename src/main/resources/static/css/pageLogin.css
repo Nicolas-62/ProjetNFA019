@@ -15,7 +15,7 @@ header{
 body {
 	height: 100vh;
 	background-color: #87ceeb;
-	margin-top: 10%;
+	margin: 0;
 }
 
 form {

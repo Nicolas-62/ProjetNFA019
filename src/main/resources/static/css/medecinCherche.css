@@ -25,7 +25,7 @@ footer{
     margin: auto;
     margin-top: 25px;
   	padding: auto;
-    height: 30vh;
+    height: 20vh;
     overflow-y: scroll;
     position: relative;
     background-color: white; 
@@ -39,7 +39,7 @@ footer{
 }
 .liste{
 	margin: auto;
-    margin-top: auto;
+    margin-bottom: 25px;
     margin-top: 25px;
     padding: auto;
     height: 30vh;

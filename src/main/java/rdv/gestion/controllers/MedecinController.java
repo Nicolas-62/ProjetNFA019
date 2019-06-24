@@ -66,7 +66,9 @@ public class MedecinController {
 		if (!"2".equals(session.getAttribute("droits").toString())) {
 			return "redirect:/pageLogin";
 		} else {	
-			model.addAttribute("medecins", medecinRepository.findAll());
+			/* on met l'ensemble des médecins dans l'objet iterable */
+			medecinsAll = medecinRepository.findAll();
+			model.addAttribute("medecins", medecinsAll);
 			return "medecinCherche";
 		}
 	}
