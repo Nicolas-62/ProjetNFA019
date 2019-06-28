@@ -44,7 +44,14 @@ public class AdminMedecinsController {
 		List<String> specialites = new ArrayList<String>();
 		specialites.add("Sexologue");
 		specialites.add("Chirurgien");
-		specialites.add("Doctorat Physique Quantitque");
+		specialites.add("Oncologue");
+		specialites.add("Gastro-enterologue");
+		specialites.add("Angiologue");
+		specialites.add("Cardiologue");
+		specialites.add("Dentiste");
+		specialites.add("Neurologue");
+		specialites.add("Chirurgien-Plasticien");
+		specialites.add("Ophtalmologiste");
 		return specialites;
 	}
 

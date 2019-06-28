@@ -27,7 +27,7 @@ public class Medecin {
 	@Pattern(regexp = "^[a-zA-Zàâéèëêïîôùüçœ\\'’ -]{2,25}$", message = "Format saisie invalide")
 	private String prenom;
 	@NotNull
-	@Size(max = 40)
+	@Size(max = 50)
 	private String specialite;
 	@NotNull
 	@Size(max = 20)
@@ -35,17 +35,20 @@ public class Medecin {
 	private String tel;
 	@NotNull
 	@Email
+	@Size(max = 50)
 	@Pattern(regexp = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$", message = "Format de mail invalide")
 	private String mail;
 	@NotNull
+	@Size(max = 60)
 	@Pattern(regexp = "^[a-zA-Z0-9àâéèëêïîôùüçœ\\'’ \\._ ,]{5,60}$", message = "Format saisie invalide")
 	private String adresse;
 	@NotNull
+	@Size(max = 25)
 	@Pattern(regexp = "^[a-zA-Zàâéèëêïîôùüçœ\\'’ -]{2,25}$", message = "Format saisie invalide")
 	private String ville;
 	@NotNull
-	@Size(max = 6)
-	@Pattern(regexp = "^([0-9]{6})$", message = "Format saisie invalide")
+	@Size(max = 5)
+	@Pattern(regexp = "^([0-9]{5})$", message = "Format saisie invalide")
 	private String cp;
 	// un medecin possède plusieurs créneaux
 	@OneToMany(mappedBy="medecin")

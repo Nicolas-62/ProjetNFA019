@@ -32,26 +32,32 @@ public class Patient {
 	@Pattern(regexp = "(M\\.)?(Mme)?", message = "format invalide")
 	private String civilite;	
 	@NotNull
+	@Size(max = 25)
 	@Pattern(regexp = "^[a-zA-Zàâéèëêïîôùüçœ\\'’ -]{2,25}$", message = "Format du nom invalide")
 	private String nom;
 	@NotNull
-	@Size(max = 30)
+	@Size(max = 25)
 	@Pattern(regexp = "^[a-zA-Zàâéèëêïîôùüçœ\\'’ -]{2,25}$", message = "Format du nom invalide")
 	private String prenom;
 	@NotNull
+	@Size(max = 20)
 	@Pattern(regexp = "^0[1-9]([-\\. ]?[0-9]{2}){4}$", message = "Format saisie invalide")
 	private String tel;
 	@Email
 	@NotNull
+	@Size(max = 50)
 	@Pattern(regexp = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$", message = "Format de mail invalide")
 	private String mail;
 	@NotNull
+	@Size(max = 60)
 	@Pattern(regexp = "^[a-zA-Z0-9àâéèëêïîôùüçœ\\'’ \\._ ,]{5,60}$", message = "Format saisie invalide")
 	private String adresse;
 	@NotNull
+	@Size(max = 25)
 	@Pattern(regexp = "^[a-zA-Zàâéèëêïîôùüçœ\\'’ -]{2,25}$", message = "Format saisie invalide")
 	private String ville;
 	@NotNull
+	@Size(max = 5)
 	@Pattern(regexp = "^([0-9]{5})$", message = "Format saisie invalide")
 	private String cp;
 	@NotNull
