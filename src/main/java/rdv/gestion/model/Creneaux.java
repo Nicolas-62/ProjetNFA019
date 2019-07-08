@@ -31,6 +31,16 @@ public class Creneaux {
 	@OneToMany(mappedBy="creneaux")
 	private Collection<Rv> rv;
 	
+	public Creneaux() {}
+	
+	public Creneaux(Integer hDebut, Integer mDebut, Integer hFin, Integer mFin, Medecin medecin) {
+		this.hDebut=hDebut;
+		this.mDebut=mDebut;
+		this.hFin=hFin;
+		this.mFin=mFin;
+		this.medecin=medecin;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

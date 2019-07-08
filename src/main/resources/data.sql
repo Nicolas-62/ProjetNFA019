@@ -9,15 +9,15 @@ insert into user(id,identifiant,password,droits) values(1,'AdminAdmin','adminadm
 -- Medecin 1 : 
 insert into user(id,identifiant,password,droits) values(2,'NicolasSergent','123Soleil!',2);
 insert into medecin(nom, prenom, specialite, tel, mail, adresse, ville, cp,user_id) 
-values('Sergent','nicolas','sexologue','0320776655','nicolas_sergent@yahoo.fr','10 rue de l''hippodrome','Marcq en Baroeul','59600',2);
+values('Sergent','nicolas','Chirurgien','0320776655','nicolas_sergent@yahoo.fr','10 rue de l''hippodrome','Marcq en Baroeul','59600',2);
 -- Medecin 2 : 
 insert into user(id,identifiant,password,droits) values(8,'NicolasLourdel','123Soleil!',2);
 insert into medecin(nom, prenom, specialite, tel, mail, adresse, ville, cp,user_id) 
-values('lourdel','nicolas','generaliste','0320998877','nicolas_lourdel@gmail.com','8 rue des oies','Arras','62000',8);
+values('lourdel','nicolas','Generaliste','0320998877','nicolas_lourdel@gmail.com','8 rue des oies','Arras','62000',8);
 -- Medecin 3 : 
 insert into user(id,identifiant,password,droits) values(3,'FrançoisDugenou','123Soleil!',2);
 insert into medecin(nom, prenom, specialite, tel, mail, adresse, ville, cp,user_id) 
-values('DuGenou','françois','kinesithérapeute','0320429043','dugenou@yahoo.fr','10 rue de marseille','Agny','62230',3);
+values('DuGenou','patrick','Neurologue','0320429043','dugenou@yahoo.fr','10 rue de marseille','Agny','62230',3);
 
 -- Ajout de creneaux pour chaque medecin
 -- Medecin 1
@@ -60,11 +60,11 @@ values(9,30,10,0,3);
 -- patient 1 : 
 insert into user(id,identifiant,password,droits) values(4,'RogerDupond','123Soleil!',3);
 insert into patient(num_secu,civilite,nom,prenom,tel,mail,adresse,ville,cp,sexe,user_id)
-values('1860159350299','M.','Dupond','Roger','0320435678','dupond@gmail.com','12 allee des chênes','Boulogne','62220','h',4);
+values('1860159350299','M.','Dupond','Roger','0320435678','dupond@gmail.com','12 allee des champs','Boulogne','62220','h',4);
 -- patient 2 : 
 insert into user(id,identifiant,password,droits) values(5,'FredericLechamp','fred345!',3);
 insert into patient(num_secu,civilite,nom,prenom,tel,mail,adresse,ville,cp,sexe,user_id)
-values('3340159350299','M.','Lechamp','Frederic','0360435678','fredlechamp@gmail.com','3 rue des blés','Marseille','13000','h',5);
+values('3340159350299','M.','Lechamp','Frederic','0360435678','fredlechamp@gmail.com','3 rue des tilleuls','Marseille','13000','h',5);
 -- patient 3 : 
 insert into user(id,identifiant,password,droits) values(6,'SylvieLemoine','syl504!',3);
 insert into patient(num_secu,civilite,nom,prenom,tel,mail,adresse,ville,cp,sexe,user_id)

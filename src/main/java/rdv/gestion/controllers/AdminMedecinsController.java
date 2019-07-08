@@ -1,6 +1,7 @@
 package rdv.gestion.controllers;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import rdv.gestion.model.Creneaux;
 import rdv.gestion.model.Medecin;
+import rdv.gestion.repository.CreneauxRepository;
 import rdv.gestion.repository.MedecinRepository;
 import rdv.gestion.repository.UserRepository;
 
@@ -32,6 +35,8 @@ public class AdminMedecinsController {
 	MedecinRepository medecinRepository;
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	CreneauxRepository creneauxRepository;
 
 	@ModelAttribute("titre")
 	private String titre() {
@@ -43,6 +48,7 @@ public class AdminMedecinsController {
 	private List<String> specialites() {
 		List<String> specialites = new ArrayList<String>();
 		specialites.add("Sexologue");
+		specialites.add("Generaliste");
 		specialites.add("Chirurgien");
 		specialites.add("Oncologue");
 		specialites.add("Gastro-enterologue");
@@ -138,23 +144,41 @@ public class AdminMedecinsController {
 						redirectAttributes.addFlashAttribute("erreur",
 								String.format("Il faut renseigner un identifiant et un mot de passe"));
 					} else {
-						// on essaye de sauvegarder, l'identifiant doit être unique
+						
 						try {
-							medecin.getUser().setDroits(3);
+							// on sauvegarde l'utilisateur associé au médecin, l'identifiant doit être unique
+							medecin.getUser().setDroits(2);
 							userRepository.save(medecin.getUser());
-							medecinRepository.save(medecin);						
+							// on sauvegarde le medecin
+							medecinRepository.save(medecin);
+							// on créer ses créneaux et on les sauvegarde
+							int mDebut=0;
+							int mFin=30;
+							int hFin=0;
+							for(int hDebut=9; hDebut<=16; hDebut++) {
+								hFin=hDebut;
+								mDebut=0;
+								mFin=30;
+								for(int j=mDebut; j<=30; j+=30) {
+									creneauxRepository.save(new Creneaux(hDebut, j, hFin, mFin, medecin));									
+									mFin=0;
+									hFin++;
+								}
+							}							
 						}catch(RuntimeException e) {
+							e.printStackTrace();
 							redirectAttributes.addFlashAttribute("erreur",
-									String.format("Cet identifiant existe déjà"));							
+									String.format("Impossible d"));							
 						}
 					}
 					// MODIFIER
 				} else if (updateFlag != null) {
-					medecin.getUser().setDroits(3);
+					medecin.getUser().setDroits(2);
 					userRepository.save(medecin.getUser());
 					medecinRepository.save(medecin);
 					// SUPPRIMER
 				} else if (deleteFlag != null) {
+					creneauxRepository.deleteByIdMedecin(medecin.getId());
 					medecinRepository.delete(medecin);
 					userRepository.delete(medecin.getUser());
 				}

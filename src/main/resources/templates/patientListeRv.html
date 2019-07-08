@@ -33,7 +33,7 @@
 		<ul>
 			<li th:each="rv : ${rendezVous}"><a
 				th:href="@{'/patientListeRv/getRv/'+${rv.id}}"
-				th:utext="'Dr. '+${rv.creneaux.medecin.nom}+' '+${rv.creneaux.medecin.prenom}+', '+${rv.date}+', '+${rv.creneaux.hDebut}+'h'+${rv.creneaux.mDebut}"></a></li>
+				th:utext="'Dr. '+${rv.creneaux.medecin.nom}+' '+${rv.creneaux.medecin.prenom}+', '+${#dates.format(rv.date, 'dd-MM-yyyy')}+', '+${rv.creneaux.hDebut}+'h'+${rv.creneaux.mDebut}"></a></li>
 		</ul>
 	</div>
 	<div class="informations" th:if="${medecinInfo != null}">
@@ -56,7 +56,7 @@
 				<h4>Ma consultation</h4>
 				<div>
 					<label for="date">Date :</label> <input type="date" id="date"
-						name="date" th:value="${#dates.format(rv.date, 'yyyy-MM-dd')}">
+						name="date" th:value="${#dates.format(rv.date, 'dd-MM-yyyy')}">
 				</div>
 				<div>
 					<label for="creneaux">Heure :</label> <select id="creneaux"
